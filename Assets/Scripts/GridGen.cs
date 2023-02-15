@@ -4,15 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
+using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Animations;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UIElements;
 
 public class Tile
 {
     GameObject self;
-    GameObject leftWall, rightWall, backWall, frontWall;
+    
+    GameObject leftWall, rightWall, backWall, frontWall, pillarBR, pillarFR, pillarBL, pillarFL, floor;
+
     public Tile frontNeighbor { get; set; }
     public Tile backNeighbor { get; set; }
     public Tile rightNeighbor { get; set; }
@@ -34,6 +41,13 @@ public class Tile
         //Debug.Log(frontWall.name);
         backWall = self.transform.Find("WallTileBack").gameObject;
         //Debug.Log(backWall.name);
+        pillarBR = self.transform.Find("BackRightPillar").gameObject;
+        pillarFR = self.transform.Find("FrontRightPillar").gameObject;
+        pillarBL = self.transform.Find("BackLeftPillar").gameObject;
+        pillarFL = self.transform.Find("FrontLeftPillar").gameObject;
+        floor = self.transform.Find("TileFloor").gameObject;
+
+        
 
         // prefab will always have at least two neighbors
         // isn't known at compile time, however
@@ -94,16 +108,35 @@ public class Tile
 
         return names;
     }
+
+    //prep for nav mesh
+    public bool setNavigationStatic()
+    {
+        List<GameObject> list = new List<GameObject> { leftWall, rightWall, backWall, frontWall, pillarBR, pillarFR, pillarBL, pillarFL, floor };
+
+        foreach (var item in list)
+        {
+            if (item != null)
+            {
+                GameObjectUtility.SetStaticEditorFlags(item, StaticEditorFlags.NavigationStatic);
+            }
+        }
+
+        return true;
+    }
 }
 
 public class GridGen : MonoBehaviour
 {
     public GameObject gridTile;
+    public NavMeshSurface surface;
     
     // Leaving grid size settable, since maybe this would be linked to difficulty
     public static int length = 10;
     public static int width = 10;
     public float height = (float)-3.7;
+
+    private bool done = false;
 
 
     private Tile[,] grid = new Tile[length, width];
@@ -120,6 +153,7 @@ public class GridGen : MonoBehaviour
             {
                 // Based on current prefab, generate a (10x10 by default) grid to make a maze from
                 GameObject temp = Instantiate(gridTile, new Vector3(i * 9, height, j * 9), Quaternion.identity);
+                temp.transform.parent = gameObject.transform;
 
                 Tile tile = new Tile(temp);
                 
@@ -135,7 +169,6 @@ public class GridGen : MonoBehaviour
                 /* if j or i is equal to width or length, this means that tile is an edge
                  * and therefore won't have a right or front (upper) neighbor
                  */
-                Debug.Log(i + " " + j);
                 if (j < width - 1)
                 {
                     grid[i, j].frontNeighbor = grid[i, j + 1];
@@ -151,7 +184,9 @@ public class GridGen : MonoBehaviour
 
         }
         generateMaze(random.Next(0,length), random.Next(0,width), grid);
+
     }
+
     
     List<string> travel = new List<string>();
     Stack<pair> visits = new Stack<pair>();
@@ -209,7 +244,11 @@ public class GridGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (done == false)
+        {
+            done = true;
+            surface.BuildNavMesh();
+        }  
     }
 }
 
