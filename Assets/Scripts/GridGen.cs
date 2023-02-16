@@ -130,6 +130,7 @@ public class GridGen : MonoBehaviour
 {
     public GameObject gridTile;
     public NavMeshSurface surface;
+    public NavMeshAgent enemy;
     
     // Leaving grid size settable, since maybe this would be linked to difficulty
     public static int length = 10;
@@ -138,10 +139,15 @@ public class GridGen : MonoBehaviour
 
     private bool done = false;
 
+    static System.Random random = new System.Random();
+
+    private int randx = random.Next(0, length);
+    private int randy = random.Next(0, width);
+
 
     private Tile[,] grid = new Tile[length, width];
 
-    System.Random random = new System.Random();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -172,18 +178,20 @@ public class GridGen : MonoBehaviour
                 if (j < width - 1)
                 {
                     grid[i, j].frontNeighbor = grid[i, j + 1];
-                    grid[i, j+1].backNeighbor = grid[i, j];
+                    grid[i, j + 1].backNeighbor = grid[i, j];
                 }
                 if (i < length - 1)
                 {
-                    grid[i,j].rightNeighbor = grid[i+1,j];
-                    grid[i+1,j].leftNeighbor = grid[i,j];
+                    grid[i, j].rightNeighbor = grid[i + 1, j];
+                    grid[i + 1, j].leftNeighbor = grid[i, j];
                 }
 
             }
 
         }
-        generateMaze(random.Next(0,length), random.Next(0,width), grid);
+
+        
+        generateMaze(randx, randy, grid);
 
     }
 
@@ -248,7 +256,10 @@ public class GridGen : MonoBehaviour
         {
             done = true;
             surface.BuildNavMesh();
-        }  
+            Instantiate(enemy, new Vector3(randx, height, randy), Quaternion.identity);
+        } 
+
+        
     }
 }
 
