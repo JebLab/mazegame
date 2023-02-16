@@ -703,6 +703,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0.025
   m_ShadowAngle: 0
+--- !u!1 &2002347873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7739838526239444104, guid: c5718a9ef96dc2a1592fc55a6a19cccc, type: 3}
+  m_PrefabInstance: {fileID: 3918957767359178387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2013410473
 GameObject:
   m_ObjectHideFlags: 1
@@ -825,3 +830,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3434122848907791993, guid: c5718a9ef96dc2a1592fc55a6a19cccc, type: 3}
   m_PrefabInstance: {fileID: 3918957767359178387}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3918957767359178394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002347873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9d54fb3618c5b55a8b347312ac893f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3918957767359178395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002347873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6869e2ba7ae64a6a4141d5fd843326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 1.42
+  sprintSpeed: 2.5
+  gravity: -9.81
+  jumpY: 10.2291
