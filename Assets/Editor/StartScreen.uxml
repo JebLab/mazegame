@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor/StartScreen.uss?fileID=7433441132597879392&amp;guid=33f56854f5e0c41c4b27d5d532d3a4a8&amp;type=3#StartScreen" />
+    <ui:Label name="Boxy" text="Another Backrooms Remake" style="padding-bottom: 20px; border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; -unity-text-align: lower-center; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=0a7bf9f38806abfdc8bee5c47df595aa&amp;type=3#NotInter-Regular&apos;); font-size: 24px; -unity-font-style: bold;" />
+    <ui:Button text="Start" display-tooltip-when-elided="true" name="Play" style="align-items: stretch; width: 50%; max-width: none; -unity-text-align: middle-center; justify-content: flex-start; left: 25%; top: 10%; position: relative;" />
+    <ui:Button text="Settings" display-tooltip-when-elided="true" name="Set" style="width: 50%; left: 25%; top: 15%; position: relative;" />
+    <ui:Button text="Exit" display-tooltip-when-elided="true" name="Quit" style="width: 50%; left: 25%; margin-top: 1px; padding-top: 1px; top: 20%; border-top-width: 1px; height: 10%; -unity-text-align: middle-center;" />
+</ui:UXML>

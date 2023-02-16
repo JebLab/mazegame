@@ -1,0 +1,13 @@
+Button {
+    background-color: rgb(150, 90, 90);
+    width: 5px;
+    -unity-font-style: italic;
+}
+
+#Play {
+    -unity-font-style: italic;
+}
+
+#Boxy {
+    background-color: rgb(160, 130, 30);
+}
