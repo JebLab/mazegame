@@ -75,7 +75,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Keyboard (WASD)"",
+                    ""name"": ""WASD [Keyboard]"",
                     ""id"": ""2ea9677b-0154-4c21-bb6a-c65601e0e19b"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -130,11 +130,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Controller (Left Stick)"",
+                    ""name"": ""Left Stick [Gamepad]"",
                     ""id"": ""e44ebc18-9c61-4bc8-9d79-16e7030a16da"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": true,
@@ -200,7 +200,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""id"": ""c5e9589e-44d2-4703-82af-c1d51af3f8a6"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": """",
                     ""action"": ""Camera"",
                     ""isComposite"": false,
