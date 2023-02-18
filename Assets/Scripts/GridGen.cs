@@ -14,6 +14,14 @@ using UnityEngine.Animations;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UIElements;
 
+public enum Directions
+{
+    FRONT,
+    BACK,
+    LEFT,
+    RIGHT
+}
+
 public class Tile
 {
     GameObject self;
@@ -61,26 +69,26 @@ public class Tile
     }
 
     // gets rid of a wall, returns success or failure (wall doesn't exist or bad wallName given)
-    public bool destroyWall(string wallName)
+    public bool destroyWall(Directions direction)
     {
-        switch (wallName)
+        switch (direction)
         {
-            case "left":
+            case Directions.LEFT:
                 if (leftWall == null) { return false; }
                 GameObject.Destroy(leftWall);
                 leftWall = null;
                 break;
-            case "right":
+            case Directions.RIGHT:
                 if (rightWall == null) { return false; }
                 GameObject.Destroy(rightWall);
                 rightWall = null;
                 break;
-            case "front":
+            case Directions.FRONT:
                 if (frontWall == null) { return false; }
                 GameObject.Destroy(frontWall);
                 frontWall= null;
                 break;
-            case "back":
+            case Directions.BACK:
                 if (backWall == null) { return false; }
                 GameObject.Destroy(backWall);
                 backWall = null;
@@ -92,19 +100,31 @@ public class Tile
         return true;
     }
 
-    // helper function to quickly obtain list of visitable neighbors
-    public List<string> getUnvisitedNeighbors()
+    // gets any and all references to neighbors
+    public List<Tile> getNeighbors()
     {
-        List<string> names = new List<string>();
+        List<Tile> tiles= new List<Tile>();
+        if(frontNeighbor != null) { tiles.Add(frontNeighbor); }
+        if(backNeighbor != null) { tiles.Add(backNeighbor); }
+        if(rightNeighbor != null) { tiles.Add(rightNeighbor);}
+        if(leftNeighbor != null) { tiles.Add(leftNeighbor);}
+
+        return tiles;
+    }
+
+    // helper function to quickly obtain list of visitable neighbors
+    public List<Directions> getUnvisitedNeighbors()
+    {
+        List<Directions> names = new List<Directions>();
 
         if (frontNeighbor != null && frontNeighbor.visited != true)
-            names.Add("front");
+            names.Add(Directions.FRONT);
         if (backNeighbor != null && backNeighbor.visited != true)
-            names.Add("back");
+            names.Add(Directions.BACK);
         if (leftNeighbor != null && leftNeighbor.visited != true)
-            names.Add("left");
+            names.Add(Directions.LEFT);
         if (rightNeighbor != null && rightNeighbor.visited != true)
-            names.Add("right");
+            names.Add(Directions.RIGHT);
 
         return names;
     }
@@ -146,6 +166,7 @@ public class GridGen : MonoBehaviour
 
 
     private Tile[,] grid = new Tile[length, width];
+    private List<Tile> cellList = new List<Tile>();
 
     
 
@@ -164,6 +185,7 @@ public class GridGen : MonoBehaviour
                 Tile tile = new Tile(temp);
                 
                 grid[i, j] = tile;
+                cellList.Add(tile);
             }
         }
 
@@ -195,8 +217,57 @@ public class GridGen : MonoBehaviour
 
     }
 
-    
-    List<string> travel = new List<string>();
+    // holds tiles and directions traversed
+    Stack<Tuple<Tile,Directions?>> cellDirections = new Stack<Tuple<Tile,Directions?>>();
+    private void generateWMaze(int x, int y, Tile[,] grid)
+    {
+        List<Tile> visits = new List<Tile>();
+
+        grid[x, y].visited = true;
+        visits.Add(grid[x, y]);
+        cellList.Remove(grid[x, y]);
+
+        // start at a random node that isn't visited
+        while (cellList.Count > 0)
+        {
+            Tile current = cellList.ElementAt(random.Next(0, cellDirections.Count));
+            Tile next = null;
+
+            cellDirections.Push(new Tuple<Tile, Directions?>(current,null));
+            while (cellDirections.Count > 0)
+            {
+                if (current.visited)
+                {
+                    foreach(Tuple<Tile,Directions?> item in cellDirections)
+                    {
+
+                    }
+                }
+
+                // randomly choose a direction to go in, add to stack
+                next = current.getNeighbors().ElementAt(random.Next(0, current.getNeighbors().Count()));
+                Directions? lastVisit = null;
+
+                if (next == current.frontNeighbor)
+                    lastVisit = Directions.BACK;
+                else if (next == current.backNeighbor)
+                    lastVisit = Directions.FRONT;
+                else if (next == current.rightNeighbor)
+                    lastVisit = Directions.LEFT;
+                else if (next == current.leftNeighbor)
+                    lastVisit = Directions.RIGHT;
+
+                cellDirections.Push(new Tuple<Tile, Directions?>(next, lastVisit));
+
+                current = next;
+            }
+        }
+
+
+    }
+
+
+    List<Directions> travel = new List<Directions>();
     Stack<pair> visits = new Stack<pair>();
     private void generateMaze(int x, int y, Tile[,] grid)
     {
@@ -212,27 +283,27 @@ public class GridGen : MonoBehaviour
         {
             visits.Push(p);
             // pick random direction (right, left, front, back)
-            string direction = travel.ElementAt(random.Next(travel.Count));
+            Directions direction = travel.ElementAt(random.Next(travel.Count));
             switch (direction)
             {
-                case "front":
-                    grid[x, y].destroyWall("front");
-                    grid[x, y + 1].destroyWall("back");
+                case Directions.FRONT:
+                    grid[x, y].destroyWall(Directions.FRONT);
+                    grid[x, y + 1].destroyWall(Directions.BACK);
                     generateMaze(x, y + 1, grid);
                     break;
-                case "back":
-                    grid[x, y].destroyWall("back");
-                    grid[x, y - 1].destroyWall("front");
+                case Directions.BACK:
+                    grid[x, y].destroyWall(Directions.BACK);
+                    grid[x, y - 1].destroyWall(Directions.FRONT);
                     generateMaze(x, y - 1, grid);
                     break;
-                case "right":
-                    grid[x, y].destroyWall("right");
-                    grid[x + 1, y].destroyWall("left");
+                case Directions.RIGHT:
+                    grid[x, y].destroyWall(Directions.RIGHT);
+                    grid[x + 1, y].destroyWall(Directions.LEFT);
                     generateMaze(x + 1, y, grid);
                     break;
-                case "left":
-                    grid[x, y].destroyWall("left");
-                    grid[x - 1, y].destroyWall("right");
+                case Directions.LEFT:
+                    grid[x, y].destroyWall(Directions.LEFT);
+                    grid[x - 1, y].destroyWall(Directions.RIGHT);
                     generateMaze(x - 1, y, grid);
                     break;
                 default:
@@ -248,6 +319,30 @@ public class GridGen : MonoBehaviour
         }
 
     }
+
+    //private Directions? getOpposite(Directions dir)
+    //{
+
+    //    Directions? result = null;
+
+    //    switch (dir)
+    //    {
+    //        case Directions.FRONT:
+    //            result = Directions.BACK;
+    //            break;
+    //        case Directions.BACK:
+    //            result = Directions.FRONT;
+    //            break;
+    //        case Directions.LEFT:
+    //            result = Directions.RIGHT;
+    //            break;
+    //        case Directions.RIGHT:
+    //            result = Directions.LEFT;
+    //            break;
+    //    }
+
+    //    return result;
+    //}
 
     // Update is called once per frame
     void Update()
