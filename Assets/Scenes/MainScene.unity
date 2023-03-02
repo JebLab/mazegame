@@ -574,7 +574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889651481}
   m_LocalRotation: {x: -0.38260487, y: 0.5960578, z: -0.3858918, w: -0.5911144}
-  m_LocalPosition: {x: 90.08, y: 41.58, z: 25.61}
+  m_LocalPosition: {x: 77, y: 73, z: 38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridTile: {fileID: 1457407101483484711, guid: 796f5d7ac24e79049b0d49ab59de514b, type: 3}
   surface: {fileID: 2003184450}
-  enemy: {fileID: 5938732961565640892, guid: fe1c36816f8dc8a4a998461254c60133, type: 3}
+  enemy: {fileID: 4089438551186000034, guid: a2046f8afaa8f6847af49fed54a9bee2, type: 3}
   height: -3.7
 --- !u!4 &2003184449
 Transform:
