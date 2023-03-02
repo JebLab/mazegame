@@ -14,11 +14,20 @@ using UnityEngine.Animations;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UIElements;
 
+public enum Directions
+{
+    FRONT,
+    BACK,
+    LEFT,
+    RIGHT
+}
+
+
 public class Tile
 {
     GameObject self;
     
-    GameObject leftWall, rightWall, backWall, frontWall, pillarBR, pillarFR, pillarBL, pillarFL, floor;
+    GameObject leftWall, rightWall, backWall, frontWall, pillarBR, pillarFR, pillarBL, pillarFL;
 
     public Tile frontNeighbor { get; set; }
     public Tile backNeighbor { get; set; }
@@ -27,20 +36,26 @@ public class Tile
 
     public bool visited { get; set; }
 
+    public bool rightVisit { get; set; } = false;
+    public bool leftVisit { get; set; } = false;
+
+    public string coord { get; set; } = "";
+
+    public GameObject floor { get; set; }
+
+    // reference to previous Tile (used for Wilson's algorithim) - eliminates need for stack
+    public Tuple<Tile,Directions?> nextCell { get; set; }
+
     public Tile(GameObject self)
     {
         // need reference to game object this tile corresponds to
         this.self = self;
 
-        // prefab will always have walls
+        // get references to each piece of prefab
         leftWall = self.transform.Find("WallTileLeft").gameObject;
-        //Debug.Log(leftWall.name);
         rightWall = self.transform.Find("WallTileRight").gameObject;
-        //Debug.Log(rightWall.name);
         frontWall = self.transform.Find("WallTileFront").gameObject;
-        //Debug.Log(frontWall.name);
         backWall = self.transform.Find("WallTileBack").gameObject;
-        //Debug.Log(backWall.name);
         pillarBR = self.transform.Find("BackRightPillar").gameObject;
         pillarFR = self.transform.Find("FrontRightPillar").gameObject;
         pillarBL = self.transform.Find("BackLeftPillar").gameObject;
@@ -58,29 +73,32 @@ public class Tile
 
         // visited is false until algorithim moves to it
         visited = false;
+
+        // used by Wilson's algorithim to determine path
+        nextCell = null;
     }
 
     // gets rid of a wall, returns success or failure (wall doesn't exist or bad wallName given)
-    public bool destroyWall(string wallName)
+    public bool destroyWall(Directions direction)
     {
-        switch (wallName)
+        switch (direction)
         {
-            case "left":
+            case Directions.LEFT:
                 if (leftWall == null) { return false; }
                 GameObject.Destroy(leftWall);
                 leftWall = null;
                 break;
-            case "right":
+            case Directions.RIGHT:
                 if (rightWall == null) { return false; }
                 GameObject.Destroy(rightWall);
                 rightWall = null;
                 break;
-            case "front":
+            case Directions.FRONT:
                 if (frontWall == null) { return false; }
                 GameObject.Destroy(frontWall);
                 frontWall= null;
                 break;
-            case "back":
+            case Directions.BACK:
                 if (backWall == null) { return false; }
                 GameObject.Destroy(backWall);
                 backWall = null;
@@ -92,19 +110,54 @@ public class Tile
         return true;
     }
 
-    // helper function to quickly obtain list of visitable neighbors
-    public List<string> getUnvisitedNeighbors()
+
+    // test
+    public bool destroyWall(string cmd)
     {
-        List<string> names = new List<string>();
+        switch (cmd)
+        {
+            case "all":
+                destroyWall(Directions.LEFT);
+                destroyWall(Directions.RIGHT);
+                destroyWall(Directions.FRONT);
+                destroyWall(Directions.BACK);
+                return true;
+            default:
+                Debug.Log("No valid command sent to destroyWall");
+                return false;
+        }
+    }
+
+    public void floorless()
+    {
+        GameObject.Destroy(floor);
+    }
+
+    // gets any and all references to neighbors
+    public List<Directions> getNeighbors()
+    {
+        List<Directions> tiles= new List<Directions>();
+        if(frontNeighbor != null) { tiles.Add(Directions.FRONT); }
+        if(backNeighbor != null) { tiles.Add(Directions.BACK); }
+        if(rightNeighbor != null) { tiles.Add(Directions.RIGHT);}
+        if(leftNeighbor != null) { tiles.Add(Directions.LEFT);}
+
+        return tiles;
+    }
+
+    // helper function to quickly obtain list of visitable neighbors
+    public List<Directions> getUnvisitedNeighbors()
+    {
+        List<Directions> names = new List<Directions>();
 
         if (frontNeighbor != null && frontNeighbor.visited != true)
-            names.Add("front");
+            names.Add(Directions.FRONT);
         if (backNeighbor != null && backNeighbor.visited != true)
-            names.Add("back");
+            names.Add(Directions.BACK);
         if (leftNeighbor != null && leftNeighbor.visited != true)
-            names.Add("left");
+            names.Add(Directions.LEFT);
         if (rightNeighbor != null && rightNeighbor.visited != true)
-            names.Add("right");
+            names.Add(Directions.RIGHT);
 
         return names;
     }
@@ -124,40 +177,74 @@ public class Tile
 
         return true;
     }
+
+    // gets valid directions (no wall blocking)
+    public List<Directions?> getTraversible()
+    {
+        List<Directions?> dirs = new List<Directions?>();
+
+        if (leftWall == null)
+            dirs.Add(Directions.LEFT);
+        if (rightWall == null)
+            dirs.Add(Directions.RIGHT);
+        if (backWall == null)
+            dirs.Add(Directions.BACK);
+        if (frontWall == null)
+            dirs.Add(Directions.FRONT);
+
+        return dirs;
+    }
+
 }
 
 public class GridGen : MonoBehaviour
 {
     public GameObject gridTile;
     public NavMeshSurface surface;
+    public NavMeshAgent enemy;
+    public GameObject player;
     
-    // Leaving grid size settable, since maybe this would be linked to difficulty
-    public static int length = 10;
-    public static int width = 10;
-    public float height = (float)-3.7;
+    // Size of grid
+    public static int length = 15;
+    public static int width = 15;
 
-    private bool done = false;
+    // -3.7 is ground level for some reason
+    public float height = (float)-3.7;
+    // used to randomly pick position
+    static System.Random random = new System.Random();
+
+    private int randx = random.Next(0, length);
+    private int randy = random.Next(0, width);
+
 
 
     private Tile[,] grid = new Tile[length, width];
+    private List<Tile> cellList = new List<Tile>();
 
-    System.Random random = new System.Random();
+    private Tile startPoint, endPoint;
+    private Directions startSide, endSide;
 
     // Start is called before the first frame update
     void Start()
     {
         // i is x axis, j is z axis
+        // generate grid
         for (int i = 0; i < length; i++)
         {
             for (int j = 0; j < width; j++)
             {
                 // Based on current prefab, generate a (10x10 by default) grid to make a maze from
                 GameObject temp = Instantiate(gridTile, new Vector3(i * 9, height, j * 9), Quaternion.identity);
+                //temp.transform.Rotate(new Vector3(0, 90, 0));
+
+
                 temp.transform.parent = gameObject.transform;
 
                 Tile tile = new Tile(temp);
-                
+
                 grid[i, j] = tile;
+                cellList.Add(tile);
+                tile.coord = i + "," + j;
             }
         }
 
@@ -172,23 +259,198 @@ public class GridGen : MonoBehaviour
                 if (j < width - 1)
                 {
                     grid[i, j].frontNeighbor = grid[i, j + 1];
-                    grid[i, j+1].backNeighbor = grid[i, j];
+                    grid[i, j + 1].backNeighbor = grid[i, j];
                 }
                 if (i < length - 1)
                 {
-                    grid[i,j].rightNeighbor = grid[i+1,j];
-                    grid[i+1,j].leftNeighbor = grid[i,j];
+                    grid[i, j].rightNeighbor = grid[i + 1, j];
+                    grid[i + 1, j].leftNeighbor = grid[i, j];
                 }
 
             }
 
         }
-        generateMaze(random.Next(0,length), random.Next(0,width), grid);
 
+
+
+        // two methods of maze generation, one uses Recursive Backtracking, the other uses Wilson's Algorithim
+        generateMaze(randx, randy, grid);
+        //generateWilsonMaze(randx, randy, grid);
+        int randomStart, randomEnd;
+        // next decide start and end, remove appropriate walls
+
+        /*
+         * This isn't intuitive at all, but because the grid generates with the cells rotated
+         * 90 degrees, it screws with the maze algorithims. This works, but you have to think of 
+         * front/back/left/right as sides of the grid and not sides of the cell.
+         */
+
+        switch (random.Next(0, 4))
+        {
+            // front start
+            case 0:
+                randomStart = random.Next(0, width);
+                randomEnd = random.Next(0, width);
+
+                startPoint = grid[length - 1, randomStart];
+                startPoint.destroyWall(Directions.RIGHT);
+
+                endPoint = grid[0, randomEnd];
+                endPoint.destroyWall(Directions.LEFT);
+
+                startSide = Directions.FRONT;
+                endSide = Directions.BACK;
+                break;
+            // back start
+            case 1:
+                randomStart = random.Next(0, width);
+                randomEnd = random.Next(0, width);
+
+                startPoint = grid[0, randomStart];
+                startPoint.destroyWall(Directions.LEFT);
+
+                endPoint = grid[length - 1, randomEnd];
+                endPoint.destroyWall(Directions.RIGHT);
+
+                startSide = Directions.BACK;
+                endSide = Directions.FRONT;
+                break;
+            // left start
+            case 2:
+                randomStart = random.Next(0, width);
+                randomEnd = random.Next(0, width);
+
+                startPoint = grid[randomStart, 0];
+                startPoint.destroyWall(Directions.BACK);
+
+                endPoint = grid[randomEnd, width - 1];
+                endPoint.destroyWall(Directions.FRONT);
+
+                startSide = Directions.LEFT;
+                endSide = Directions.RIGHT;
+                break;
+
+            // right start
+            case 3:
+                randomStart = random.Next(0, width);
+                randomEnd = random.Next(0, width);
+
+                startPoint = grid[randomStart, width - 1];
+                startPoint.destroyWall(Directions.FRONT);
+
+                endPoint = grid[randomEnd, 0];
+                endPoint.destroyWall(Directions.BACK);
+
+                startSide = Directions.RIGHT;
+                endSide = Directions.LEFT;
+                break;
+        }
+
+        Instantiate(player, startPoint.floor.transform);
+        //rightFollower();
     }
 
     
-    List<string> travel = new List<string>();
+
+    /*private void leftFollower(Tile begin) 
+    { 
+
+    
+    }*/
+
+    // Wilson's Algorithim
+    private void generateWilsonMaze(int x, int y, Tile[,] grid)
+    {
+        bool done;
+
+        grid[x, y].visited = true;
+        Tile start = null;
+        // unvisited tiles
+        cellList.Remove(grid[x, y]);
+
+        // start at a random node that isn't visited
+        while (cellList.Count > 0)
+        {
+            Tile current = cellList.ElementAt(random.Next(0, cellList.Count));
+            start = current;
+            Tile next = null;
+
+            done = false;
+            while (!done)
+            {
+                // what to do when randomly finding a visited cell
+                if (current.visited)
+                {
+                    current = start;
+
+                    while (current.nextCell != null)
+                    {
+                        switch (current.nextCell.Item2)
+                        {
+                            case Directions.FRONT:
+                                current.destroyWall(Directions.FRONT);
+                                current.nextCell.Item1.destroyWall(Directions.BACK);
+                                break;
+                            case Directions.BACK:
+                                current.destroyWall(Directions.BACK);
+                                current.nextCell.Item1.destroyWall(Directions.FRONT);
+                                break;
+                            case Directions.RIGHT:
+                                current.destroyWall(Directions.RIGHT);
+                                current.nextCell.Item1.destroyWall(Directions.LEFT);
+                                break;
+                            case Directions.LEFT:
+                                current.destroyWall(Directions.LEFT);
+                                current.nextCell.Item1.destroyWall(Directions.RIGHT);
+                                break;
+                        }
+
+                        // for efficiency of space, use next as temp reference to clear out current.nextCell
+                        // this is important so that after the first iteration of the algorithim, current.nextCell will be null
+                        cellList.Remove(current);
+                        current.visited = true;
+                        next = current.nextCell.Item1;
+                        current.nextCell = null;
+                        current = next;
+                    }
+                    done = true;
+                }
+
+                else
+                {
+                    // randomly choose a direction to go in, set as next
+                    switch (current.getNeighbors().ElementAt(random.Next(0, current.getNeighbors().Count())))
+                    {
+                        case Directions.FRONT:
+                            next = current.frontNeighbor;
+                            current.nextCell = new Tuple<Tile, Directions?>(next, Directions.FRONT);
+                            break;
+                        case Directions.BACK:
+                            next = current.backNeighbor;
+                            current.nextCell = new Tuple<Tile, Directions?>(next, Directions.BACK);
+                            break;
+                        case Directions.LEFT:
+                            next = current.leftNeighbor;
+                            current.nextCell = new Tuple<Tile, Directions?>(next, Directions.LEFT);
+                            break;
+                        case Directions.RIGHT:
+                            next = current.rightNeighbor;
+                            current.nextCell = new Tuple<Tile, Directions?>(next, Directions.RIGHT);
+                            break;
+                    }
+
+                    current = next;
+                }
+            }
+        }
+
+
+    }
+
+
+
+    // Recursive Backtracking
+    List<Directions> travel = new List<Directions>();
     Stack<pair> visits = new Stack<pair>();
     private void generateMaze(int x, int y, Tile[,] grid)
     {
@@ -204,27 +466,27 @@ public class GridGen : MonoBehaviour
         {
             visits.Push(p);
             // pick random direction (right, left, front, back)
-            string direction = travel.ElementAt(random.Next(travel.Count));
+            Directions direction = travel.ElementAt(random.Next(travel.Count));
             switch (direction)
             {
-                case "front":
-                    grid[x, y].destroyWall("front");
-                    grid[x, y + 1].destroyWall("back");
+                case Directions.FRONT:
+                    grid[x, y].destroyWall(Directions.FRONT);
+                    grid[x, y + 1].destroyWall(Directions.BACK);
                     generateMaze(x, y + 1, grid);
                     break;
-                case "back":
-                    grid[x, y].destroyWall("back");
-                    grid[x, y - 1].destroyWall("front");
+                case Directions.BACK:
+                    grid[x, y].destroyWall(Directions.BACK);
+                    grid[x, y - 1].destroyWall(Directions.FRONT);
                     generateMaze(x, y - 1, grid);
                     break;
-                case "right":
-                    grid[x, y].destroyWall("right");
-                    grid[x + 1, y].destroyWall("left");
+                case Directions.RIGHT:
+                    grid[x, y].destroyWall(Directions.RIGHT);
+                    grid[x + 1, y].destroyWall(Directions.LEFT);
                     generateMaze(x + 1, y, grid);
                     break;
-                case "left":
-                    grid[x, y].destroyWall("left");
-                    grid[x - 1, y].destroyWall("right");
+                case Directions.LEFT:
+                    grid[x, y].destroyWall(Directions.LEFT);
+                    grid[x - 1, y].destroyWall(Directions.RIGHT);
                     generateMaze(x - 1, y, grid);
                     break;
                 default:
@@ -242,13 +504,19 @@ public class GridGen : MonoBehaviour
     }
 
     // Update is called once per frame
+    private bool done;
     void Update()
     {
         if (done == false)
         {
             done = true;
             surface.BuildNavMesh();
-        }  
+
+            Instantiate(enemy, new Vector3(randx, height, randy), Quaternion.identity);
+        } 
+
+        
+
     }
 }
 

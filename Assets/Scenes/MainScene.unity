@@ -123,7 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &885435530
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -475,7 +474,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 55.405, y: -118.357, z: -55.445}
---- !u!1 &1889651481
+--- !u!1 &1828930033
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,18 +482,16 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1889651485}
-  - component: {fileID: 1889651484}
-  - component: {fileID: 1889651483}
-  - component: {fileID: 1889651482}
+
+  - component: {fileID: 1828930034}
   m_Layer: 0
-  m_Name: MainCamera
-  m_TagString: MainCamera
+  m_Name: GameObject
+  m_TagString: Untagged
+
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1889651482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -671,6 +668,7 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1889651485
+--- !u!4 &1828930034
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -679,12 +677,16 @@ Transform:
   m_GameObject: {fileID: 1889651481}
   m_LocalRotation: {x: -0.38260487, y: 0.5960578, z: -0.3858918, w: -0.5911144}
   m_LocalPosition: {x: 90.08, y: 41.58, z: 25.61}
+
+  m_GameObject: {fileID: 1828930033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.741377, y: 10.711403, z: 15.839292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 53.767, y: 21.969, z: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2003184447
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +719,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridTile: {fileID: 1457407101483484711, guid: 796f5d7ac24e79049b0d49ab59de514b, type: 3}
   surface: {fileID: 2003184450}
+  enemy: {fileID: 7069632183988816024, guid: 5858fcdc5cd23f24592d81a339c5eefc, type: 3}
+  player: {fileID: 9219927063798410438, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
   height: -3.7
 --- !u!4 &2003184449
 Transform:
