@@ -210,12 +210,12 @@ public class GridGen : MonoBehaviour
 
     // -3.7 is ground level for some reason
     public float height = (float)-3.7;
-
     // used to randomly pick position
     static System.Random random = new System.Random();
 
     private int randx = random.Next(0, length);
     private int randy = random.Next(0, width);
+
 
 
     private Tile[,] grid = new Tile[length, width];
@@ -236,6 +236,7 @@ public class GridGen : MonoBehaviour
                 // Based on current prefab, generate a (10x10 by default) grid to make a maze from
                 GameObject temp = Instantiate(gridTile, new Vector3(i * 9, height, j * 9), Quaternion.identity);
                 //temp.transform.Rotate(new Vector3(0, 90, 0));
+
 
                 temp.transform.parent = gameObject.transform;
 
@@ -353,6 +354,7 @@ public class GridGen : MonoBehaviour
 
     /*private void leftFollower(Tile begin) 
     { 
+
     
     }*/
 
@@ -509,10 +511,12 @@ public class GridGen : MonoBehaviour
         {
             done = true;
             surface.BuildNavMesh();
+
             Instantiate(enemy, new Vector3(randx, height, randy), Quaternion.identity);
         } 
 
         
+
     }
 }
 
