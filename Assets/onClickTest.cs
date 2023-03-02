@@ -46,12 +46,15 @@ public class onClickTest : MonoBehaviour
     {
 
         Debug.Log($"{"Play"} was clicked!");
-        SceneManager.LoadScene(sceneName:"TransToScene");
+
+        // main scene holds maze generation
+        SceneManager.LoadScene(sceneName:"MainScene");
     }
 
     private void ClickQuit(ClickEvent evt)
     {
-        Debug.Log($"{"Quit"} was clicked");
+        Debug.Log("Quit");
+        Application.Quit();
     }
 
     private void ClickSettings(ClickEvent evt)
