@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 066a2d3d7fc77dc7d892c6f492c12c66
   - enabled: 1
+    path: Assets/Scenes/TransToScene.unity
+    guid: e003e54e317a4d802aea604696079f4f
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 4509213cec9f42c48811b939c684267d
   m_configObjects:

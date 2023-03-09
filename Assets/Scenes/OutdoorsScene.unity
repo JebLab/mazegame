@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.3369, g: 325.0498, b: 430.2192, a: 1}
+  m_IndirectSpecularColor: {r: 262.312, g: 325.0254, b: 430.21582, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -389,6 +389,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &690177175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9219927063798410438, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
+  m_PrefabInstance: {fileID: 5079944452492310065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &690177183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690177175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6869e2ba7ae64a6a4141d5fd843326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 1.42
+  sprintSpeed: 3.583
+  crouchSpeed: 0.7
+  gravity: -9.81
+  jumpY: 0.7112
+  stamina: 100
 --- !u!1 &899789430
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,9 +608,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9014028097667251282, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
+      propertyPath: sprintSpeed
+      value: 9.09
+      objectReference: {fileID: 0}
     - target: {fileID: 9219927063798410438, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9014028097667251282, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
