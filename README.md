@@ -27,6 +27,10 @@ A new student from Willams County Highschool is taken to the abandoned Hillman I
 
 - [x] Procedurally Generated Map using pre-fabricated rooms
 - [ ] Illusion of infinite labyrinth using "gates" or other tricks
+- [ ] Add UI Elements
+- [ ] Add Player UI Interactions
+- [ ] Textures and Polishing
+- [ ] Mouse Lock
 - [ ] Interactable Enviroments
 - [ ] PS1/Half-life Era Models and Textures
 - [ ] Multiple Levels with increasingly added stakes
