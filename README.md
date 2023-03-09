@@ -33,4 +33,4 @@ A new student from Willams County Highschool is taken to the abandoned Hillman I
 - [ ] Various Monsters with different Machanics
 
 ## Targets
-- [ ] Release a Pre-Alpha build before Spring Break
+- [x] Release a Pre-Alpha build before Spring Break
