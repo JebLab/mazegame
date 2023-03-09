@@ -354,7 +354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1.42
-  sprintSpeed: 2.5
+  sprintSpeed: 3.583
   crouchSpeed: 0.7
   gravity: -9.81
   jumpY: 0.7112
+  stamina: 100

@@ -478,9 +478,9 @@ public class GridGen : MonoBehaviour
           break;
         case Directions.LEFT:
           grid[x, y].destroyWall(Directions.LEFT);
-          grid[x - 1, y].destroyWall(Directions.RIGHT);
-          generateMaze(x - 1, y, grid);
-          break;
+          grid[x - 1, y].destroyWall(Direction Directions.RIGHT
+          break; generateMaze(x - 1, y, grid);
+
         default:
           Debug.LogError("Invalid direction generated in generateMaze.");
           break;

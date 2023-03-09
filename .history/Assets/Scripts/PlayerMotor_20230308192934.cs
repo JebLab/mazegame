@@ -30,17 +30,13 @@ public class PlayerMotor : MonoBehaviour
     isGrounded = controller.isGrounded;
     if (isSprinting == true)
     {
-      stamina -= 3f * Time.deltaTime;
-      if (stamina == 0f)
+      stamina -= 2f * Time.deltaTime;
+      if (stamina == 0)
       {
         sprintSpeed -= .2f * Time.deltaTime;
         if (sprintSpeed <= walkSpeed)
         { SprintReleased(); }
       }
-    }
-    if (isSprinting == false)
-    {
-      stamina += 1.5f * Time.deltaTime;
     }
     stamina = Mathf.Clamp(stamina, 0, 100);
   }
@@ -74,7 +70,7 @@ public class PlayerMotor : MonoBehaviour
   }
   public void SprintPressed()
   {
-    if (stamina > 0)
+    if (stamina == 100)
     {
       isSprinting = true;
       isCrouching = false;
@@ -85,6 +81,8 @@ public class PlayerMotor : MonoBehaviour
   {
     isSprinting = false;
     sprintSpeed = 3.583f;
+    stamina += .05f * Time.deltaTime;
+
   }
 
   public void CrouchPressed()

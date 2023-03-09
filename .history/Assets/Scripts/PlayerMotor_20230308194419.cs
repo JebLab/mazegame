@@ -30,7 +30,7 @@ public class PlayerMotor : MonoBehaviour
     isGrounded = controller.isGrounded;
     if (isSprinting == true)
     {
-      stamina -= 3f * Time.deltaTime;
+      stamina -= 2f * Time.deltaTime;
       if (stamina == 0f)
       {
         sprintSpeed -= .2f * Time.deltaTime;
@@ -40,7 +40,7 @@ public class PlayerMotor : MonoBehaviour
     }
     if (isSprinting == false)
     {
-      stamina += 1.5f * Time.deltaTime;
+      stamina += .05f * Time.deltaTime;
     }
     stamina = Mathf.Clamp(stamina, 0, 100);
   }
