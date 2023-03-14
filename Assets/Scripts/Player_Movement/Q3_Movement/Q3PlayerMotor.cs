@@ -9,8 +9,8 @@ namespace Q3Movement
   [RequireComponent(typeof(CharacterController))]
   public class Q3PlayerMotor : MonoBehaviour
   {
-    private NewPlayerInput p_Controls;
-    private NewPlayerInput.PlayerActions g_Movement;
+    public static NewPlayerInput p_Controls;
+    public static NewPlayerInput.PlayerActions g_Movement;
 
 
     [Serializable]

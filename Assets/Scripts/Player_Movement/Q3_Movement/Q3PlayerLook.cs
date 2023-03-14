@@ -9,8 +9,8 @@ namespace Q3Movement
   [Serializable]
   public class Q3PlayerLook
   {
-    private NewPlayerInput p_Controls;
-    private NewPlayerInput.PlayerActions g_Movement;
+    //private NewPlayerInput p_Controls;
+    //private NewPlayerInput.PlayerActions g_Movement;
     [SerializeField] private float m_XSensitivity = 2f;
     [SerializeField] private float m_YSensitivity = 2f;
     [SerializeField] private bool m_ClampVerticalRotation = true;
@@ -24,11 +24,11 @@ namespace Q3Movement
     private Quaternion m_CameraTargetRot;
     private bool m_cursorIsLocked = true;
 
-    void Awake()
-    {
-      p_Controls = new NewPlayerInput();
-      g_Movement = p_Controls.Player;
-    }
+    //void Awake()
+    //{
+    //  p_Controls = new NewPlayerInput();
+    //  g_Movement = p_Controls.Player;
+    //}
 
     public void Init(Transform character, Transform camera)
     {
@@ -36,37 +36,37 @@ namespace Q3Movement
       m_CameraTargetRot = camera.localRotation;
     }
 
-    public void LookRotation(Transform character, Transform camera)
-    {
-      var c_Input = g_Movement.Look.ReadValue<Vector2>();
-      float yRot = c_Input.x * m_XSensitivity;
-      float xRot = c_Input.y * m_YSensitivity;
+        public void LookRotation(Transform character, Transform camera)
+        {
+            var c_Input = Q3PlayerMotor.g_Movement.Look.ReadValue<Vector2>();
+            float yRot = c_Input.x * m_XSensitivity;
+            float xRot = c_Input.y * m_YSensitivity;
 
-      m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-      m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
+            m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
+            m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
 
-      if (m_ClampVerticalRotation)
-      {
-        m_CameraTargetRot = ClampRotationAroundXAxis(m_CameraTargetRot);
-      }
+            if (m_ClampVerticalRotation)
+            {
+                m_CameraTargetRot = ClampRotationAroundXAxis(m_CameraTargetRot);
+            }
 
-      if (m_Smooth)
-      {
-        character.localRotation = Quaternion.Slerp(character.localRotation, m_CharacterTargetRot,
-            m_SmoothTime * Time.deltaTime);
-        camera.localRotation = Quaternion.Slerp(camera.localRotation, m_CameraTargetRot,
-            m_SmoothTime * Time.deltaTime);
-      }
-      else
-      {
-        character.localRotation = m_CharacterTargetRot;
-        camera.localRotation = m_CameraTargetRot;
-      }
+            if (m_Smooth)
+            {
+                character.localRotation = Quaternion.Slerp(character.localRotation, m_CharacterTargetRot,
+                    m_SmoothTime * Time.deltaTime);
+                camera.localRotation = Quaternion.Slerp(camera.localRotation, m_CameraTargetRot,
+                    m_SmoothTime * Time.deltaTime);
+            }
+            else
+            {
+                character.localRotation = m_CharacterTargetRot;
+                camera.localRotation = m_CameraTargetRot;
+            }
 
-      UpdateCursorLock();
-    }
+            UpdateCursorLock();
+        }
 
-    public void SetCursorLock(bool value)
+        public void SetCursorLock(bool value)
     {
       m_LockCursor = value;
       if (!m_LockCursor)
@@ -125,11 +125,11 @@ namespace Q3Movement
     }
     private void OnEnable()
     {
-      g_Movement.Enable();
+      Q3PlayerMotor.g_Movement.Enable();
     }
     private void OnDisable()
     {
-      g_Movement.Disable();
+      Q3PlayerMotor.g_Movement.Disable();
     }
   }
 }
