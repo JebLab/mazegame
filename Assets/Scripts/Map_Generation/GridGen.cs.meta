@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a4cad3c8def363048acd7cf57066665c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gridTile: {fileID: 1457407101483484711, guid: 796f5d7ac24e79049b0d49ab59de514b, type: 3}
+  - surface: {instanceID: 0}
+  - enemy: {fileID: 7069632183988816024, guid: 5858fcdc5cd23f24592d81a339c5eefc, type: 3}
+  - player: {fileID: 9219927063798410438, guid: 0f25166e3f96687e38ed3d8491ece5f1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

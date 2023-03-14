@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.coffee.csharp-compiler-settings": {
+      "version": "https://github.com/mob-sakai/CSharpCompilerSettingsForUnity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7b73d99d06f565e759c830d1974430feee014b86"
+    },
     "com.unity.ai.navigation": {
       "version": "1.0.0-exp.4",
       "depth": 0,
