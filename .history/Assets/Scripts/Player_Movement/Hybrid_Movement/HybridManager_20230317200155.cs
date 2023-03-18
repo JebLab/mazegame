@@ -3,19 +3,22 @@ using UnityEngine;
 public class HybridManager : MonoBehaviour
 {
   private NewPlayerInput p_Controls;
-  public NewPlayerInput.PlayerActions g_Player;
+  private NewPlayerInput.PlayerActions g_Player;
 
   private HybridMotor h_Motor;
   private HybridLook h_Look;
 
 
-  void Awake()
+  object Awake()
   {
     p_Controls = new NewPlayerInput();
     g_Player = p_Controls.Player;
 
     h_Motor = GetComponent<HybridMotor>();
     h_Look = GetComponent<HybridLook>();
+
+    g_Player.Sprint.performed += ctx => h_Motor.isSprinting;
+
   }
 
   void Start()

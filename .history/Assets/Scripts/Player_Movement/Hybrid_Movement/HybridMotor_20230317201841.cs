@@ -19,9 +19,9 @@ public class HybridMotor : MonoBehaviour
     }
   }
   [Header("Movement")]
-  [SerializeField] private float m_Friction = 3;
-  [SerializeField] private float m_Gravity = 9.81f;
-  [SerializeField] private float m_JumpForce = 4;
+  [SerializeField] private float m_Friction = 1;
+  [SerializeField] private float m_Gravity = -9.81f;
+  [SerializeField] private float m_JumpForce = 1;
   [Tooltip("Automatically jump when holding jump button")]
   [SerializeField] private bool m_AutoBunnyHop = false;
   [Tooltip("How precise air control is")]
@@ -45,7 +45,6 @@ public class HybridMotor : MonoBehaviour
 
   void Start()
   {
-    m_Tran = transform;
     m_Character = GetComponent<CharacterController>();
   }
 

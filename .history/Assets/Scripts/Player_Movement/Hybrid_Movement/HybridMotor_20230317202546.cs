@@ -45,7 +45,6 @@ public class HybridMotor : MonoBehaviour
 
   void Start()
   {
-    m_Tran = transform;
     m_Character = GetComponent<CharacterController>();
   }
 
