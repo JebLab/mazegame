@@ -9,7 +9,7 @@ public class HybridManager : MonoBehaviour
   private HybridLook h_Look;
 
 
-  void Awake()
+  object Awake()
   {
     p_Controls = new NewPlayerInput();
     g_Player = p_Controls.Player;

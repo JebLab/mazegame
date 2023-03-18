@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class HybridMotor : MonoBehaviour
 {
-  private HybridManager h_Man;
   [Serializable]
   public class MovementSettings
   {
@@ -19,13 +18,13 @@ public class HybridMotor : MonoBehaviour
     }
   }
   [Header("Movement")]
-  [SerializeField] private float m_Friction = 3;
-  [SerializeField] private float m_Gravity = 9.81f;
-  [SerializeField] private float m_JumpForce = 4;
+  [SerializeField] private float m_Friction = 1;
+  [SerializeField] private float m_Gravity = -9.81f;
+  [SerializeField] private float m_JumpForce = 1;
   [Tooltip("Automatically jump when holding jump button")]
   [SerializeField] private bool m_AutoBunnyHop = false;
   [Tooltip("How precise air control is")]
-  [SerializeField] private float m_AirControl = 0f;
+  [SerializeField] private float m_AirControl = 0.3f;
   [SerializeField] private MovementSettings m_GroundSettings = new MovementSettings(7, 14, 10);
   [SerializeField] private MovementSettings m_AirSettings = new MovementSettings(7, 2, 2);
   [SerializeField] private MovementSettings m_StrafeSettings = new MovementSettings(1, 50, 50);
@@ -45,7 +44,6 @@ public class HybridMotor : MonoBehaviour
 
   void Start()
   {
-    m_Tran = transform;
     m_Character = GetComponent<CharacterController>();
   }
 
@@ -87,12 +85,9 @@ public class HybridMotor : MonoBehaviour
     }
   }
 
-  public void isSprinting()
+  private void isSprinting()
   {
-    if (h_Man.g_Player.Sprint.IsPressed())
-      m_isSprinting = true;
-    else
-      m_isSprinting = false;
+    m_isSprinting = true;
   }
 
   private void AirMove()

@@ -46,18 +46,18 @@ public class HybridLook : MonoBehaviour
       m_CameraTargetRot = ClampRotationAroundXAxis(m_CameraTargetRot);
     }
 
-    if (m_Smooth)
-    {
-      c_Chara.transform.localRotation = Quaternion.Slerp(c_Chara.transform.localRotation, m_CharacterTargetRot,
-          m_SmoothTime * Time.deltaTime);
-      m_Camera.transform.localRotation = Quaternion.Slerp(m_Camera.transform.localRotation, m_CameraTargetRot,
-          m_SmoothTime * Time.deltaTime);
-    }
-    else
-    {
-      c_Chara.transform.localRotation = m_CharacterTargetRot;
-      m_Camera.transform.localRotation = m_CameraTargetRot;
-    }
+    // if (m_Smooth)
+    // {
+    //   c_Chara.transform.localRotation = Quaternion.Slerp(c_Chara.transform.localRotation, m_CharacterTargetRot,
+    //       m_SmoothTime * Time.deltaTime);
+    //   m_Camera.transform.localRotation = Quaternion.Slerp(m_Camera.transform.localRotation, m_CameraTargetRot,
+    //       m_SmoothTime * Time.deltaTime);
+    // }
+    // else
+    // {
+    //   c_Chara.transform.localRotation = m_CharacterTargetRot;
+    //   m_Camera.transform.localRotation = m_CameraTargetRot;
+    // }
 
     UpdateCursorLock();
   }
