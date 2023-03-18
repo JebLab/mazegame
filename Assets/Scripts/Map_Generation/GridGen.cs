@@ -254,7 +254,7 @@ public class GridGen : MonoBehaviour
     public GameObject gridTile;
     public NavMeshSurface surface;
     public NavMeshAgent enemy;
-    //public GameObject player;
+    public GameObject player;
 
     // Size of grid
     public static int length = 20;
@@ -405,7 +405,7 @@ public class GridGen : MonoBehaviour
                 break;
         }
 
-        //Instantiate(player, startPoint.floor.transform);
+        Instantiate(player, startPoint.floor.transform);
 
         // runs right and left wall follower algorithims, then deletes random walls on the correct path to create loops
         deBottleneck();
