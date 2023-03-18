@@ -16,7 +16,6 @@ public class HybridManager : MonoBehaviour
 
     h_Motor = GetComponent<HybridMotor>();
     h_Look = GetComponent<HybridLook>();
-
   }
 
   void Start()
