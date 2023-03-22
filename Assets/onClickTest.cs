@@ -10,6 +10,10 @@ public class onClickTest : MonoBehaviour
     private Button _button2;
     private Button _Settings;
 
+    public Animator transition;
+
+    private AudioSource buttSound;
+
 
     //Add logic that interacts with the UI controls in the `OnEnable` methods
     private void OnEnable()
@@ -29,8 +33,9 @@ public class onClickTest : MonoBehaviour
         _button2.RegisterCallback<ClickEvent>(ClickQuit);
         _Settings.RegisterCallback<ClickEvent>(ClickSettings);
 
-        /* var _inputFields = uiDocument.rootVisualElement.Q("input-message");
-        _inputFields.RegisterCallback<ChangeEvent<string>>(InputMessage); */
+        buttSound = FindObjectOfType<AudioSource>();
+
+        StartCoroutine(LoadLevel(0));
         Debug.Log("OnEnable was called!");
 
     }
@@ -46,21 +51,37 @@ public class onClickTest : MonoBehaviour
     {
 
         Debug.Log($"{"Play"} was clicked!");
+        buttSound.Play(0);
         SceneManager.LoadScene(sceneName:"TransToScene");
-    }
-
-    private void ClickQuit(ClickEvent evt)
-    {
-        Debug.Log($"{"Quit"} was clicked");
     }
 
     private void ClickSettings(ClickEvent evt)
     {
         Debug.Log($"{"Settings"} was clicked.");
+        buttSound.Play(0);
     }
 
-    public static void InputMessage(ChangeEvent<string> evt)
+    private void ClickQuit(ClickEvent evt)
     {
-        Debug.Log($"{evt.newValue} -> {evt.target}");
+        Debug.Log($"{"Quit"} was clicked");
+        buttSound.Play(0);
+        Quit();
+    }
+
+    // Stolen straight from Stack Overflow, works in the Editor
+    // Haven't tried it in a Build yet
+    public void Quit() {
+    #if UNITY_STANDALONE
+        Application.Quit();
+    #endif
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #endif
+    }
+
+    IEnumerator LoadLevel(int levelIndex) {
+        // transition.SetTrigger("StartScene");
+        
+        yield return new WaitForSeconds(1);
     }
 }
