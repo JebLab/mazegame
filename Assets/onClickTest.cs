@@ -14,6 +14,8 @@ public class onClickTest : MonoBehaviour
 
     private AudioSource buttSound;
 
+    private Animator animaniacs;
+
 
     //Add logic that interacts with the UI controls in the `OnEnable` methods
     private void OnEnable()
@@ -35,6 +37,8 @@ public class onClickTest : MonoBehaviour
 
         buttSound = FindObjectOfType<AudioSource>();
 
+        animaniacs = FindObjectOfType<Animator>();
+
         StartCoroutine(LoadLevel(0));
         Debug.Log("OnEnable was called!");
 
@@ -52,6 +56,12 @@ public class onClickTest : MonoBehaviour
 
         Debug.Log($"{"Play"} was clicked!");
         buttSound.Play(0);
+        animaniacs.SetBool("IsClickedStart", true);
+        StartCoroutine(sceneTrans());
+    }
+
+    IEnumerator sceneTrans() {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName:"TransToScene");
     }
 
@@ -65,6 +75,12 @@ public class onClickTest : MonoBehaviour
     {
         Debug.Log($"{"Quit"} was clicked");
         buttSound.Play(0);
+        animaniacs.SetBool("IsClickedStart", true);
+        StartCoroutine(quitFunc(1));
+    }
+
+   IEnumerator quitFunc(int myParam) {
+        yield return new WaitForSeconds(myParam);
         Quit();
     }
 
