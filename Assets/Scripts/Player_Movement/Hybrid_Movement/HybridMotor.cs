@@ -18,26 +18,37 @@ public class HybridMotor : MonoBehaviour
       Deceleration = decel;
     }
   }
+
   [Header("Movement")]
-  [SerializeField] private float m_Friction = 3;
-  [SerializeField] private float m_Gravity = 9.81f;
-  [SerializeField] private float m_JumpForce = 4;
+  [SerializeField] private float m_Friction = 6;
+  [SerializeField] private float m_Gravity = 20;
+  [SerializeField] private float m_JumpForce = 8;
   [Tooltip("Automatically jump when holding jump button")]
   [SerializeField] private bool m_AutoBunnyHop = false;
+  // [Tooltip("Automatically sprint if there is enough stamina")]
+  // [SerializeField] private bool m_AutoSprint = false;
   [Tooltip("How precise air control is")]
-  [SerializeField] private float m_AirControl = 0f;
+  [SerializeField] private float m_AirControl = 0.3f;
   [SerializeField] private MovementSettings m_GroundSettings = new MovementSettings(7, 14, 10);
   [SerializeField] private MovementSettings m_AirSettings = new MovementSettings(7, 2, 2);
   [SerializeField] private MovementSettings m_StrafeSettings = new MovementSettings(1, 50, 50);
 
-  public static CharacterController m_Character;
+  /// <summary>
+  /// Returns player's current speed.
+  /// </summary>
+
   public float Speed { get { return m_Character.velocity.magnitude; } }
+
+  public static CharacterController m_Character;
   private Vector3 m_MoveDirectionNorm = Vector3.zero;
   private Vector3 m_PlayerVelocity = Vector3.zero;
+
   // Used to queue the next jump just before hitting the ground.
   private bool m_JumpQueued = false;
 
   private bool m_isSprinting = false;
+
+  // Used to display real time friction values.
   private float m_PlayerFriction = 0;
 
   private Vector3 m_MoveInput;
@@ -51,6 +62,10 @@ public class HybridMotor : MonoBehaviour
 
   private void Update()
   {
+    QueueJump();
+    isSprinting();
+    // QueueCrouch();
+
     // Set movement state.
     if (m_Character.isGrounded)
     {
@@ -72,16 +87,16 @@ public class HybridMotor : MonoBehaviour
   {
     if (m_AutoBunnyHop)
     {
-      m_JumpQueued = Input.GetButton("Jump");
+      m_JumpQueued = h_Man.g_Player.Jump.IsPressed();
       return;
     }
 
-    if (Input.GetButtonDown("Jump") && !m_JumpQueued)
+    if (h_Man.g_Player.Jump.WasPressedThisFrame() && !m_JumpQueued)
     {
       m_JumpQueued = true;
     }
 
-    if (Input.GetButtonUp("Jump"))
+    if (h_Man.g_Player.Jump.WasReleasedThisFrame())
     {
       m_JumpQueued = false;
     }
@@ -89,11 +104,20 @@ public class HybridMotor : MonoBehaviour
 
   public void isSprinting()
   {
-    if (h_Man.g_Player.Sprint.IsPressed())
+    if (h_Man.g_Player.Sprint.WasPressedThisFrame())
+    {
       m_isSprinting = true;
-    else
+    }
+
+    if (h_Man.g_Player.Sprint.WasReleasedThisFrame())
+    {
       m_isSprinting = false;
+    }
   }
+  // public void isNOTSprinting()
+  // {
+  //   m_isSprinting = false;
+  // }
 
   private void AirMove()
   {
@@ -208,7 +232,7 @@ public class HybridMotor : MonoBehaviour
       m_JumpQueued = false;
     }
 
-    if (m_isSprinting)
+    if (m_isSprinting == true)
     {
       wishspeed *= m_GroundSettings.MaxSpeed * 1.5f;
       Accelerate(wishdir, wishspeed, m_GroundSettings.Acceleration);

@@ -198,7 +198,7 @@ public partial class @NewPlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""299e6c66-9148-4bfb-92f2-b238616771f5"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -242,7 +242,7 @@ public partial class @NewPlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6258f668-bc17-4a9e-a035-9db19e12c8df"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
