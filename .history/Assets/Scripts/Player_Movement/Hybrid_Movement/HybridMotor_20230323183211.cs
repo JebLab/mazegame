@@ -117,20 +117,10 @@ public class HybridMotor : MonoBehaviour
       m_isSprinting = false;
     }
   }
-
-  private void QueueCrouch()
-  {
-    if (h_Man.g_Player.Crouch.WasPressedThisFrame())
-    {
-      m_CrouchQueued = true;
-      m_Character.height = .7f;
-    }
-    if (h_Man.g_Player.Crouch.WasReleasedThisFrame())
-    {
-      m_CrouchQueued = false;
-      m_Character.height = 2f;
-    }
-  }
+  // public void isNOTSprinting()
+  // {
+  //   m_isSprinting = false;
+  // }
 
   private void AirMove()
   {
@@ -236,7 +226,7 @@ public class HybridMotor : MonoBehaviour
 
     if (m_CrouchQueued)
     {
-      wishspeed *= m_GroundSettings.MaxSpeed * -0.5f;
+      wishspeed *= m_GroundSettings.MaxSpeed * 0.5f;
     }
 
     if (m_isSprinting == true)
