@@ -109,11 +109,11 @@ MonoBehaviour:
   dithering: 1
   stopNaNs: 0
   taaSharpenStrength: 0.5
-  TAAQuality: 1
+  TAAQuality: 2
   taaHistorySharpening: 0.35
-  taaAntiFlicker: 0.5
+  taaAntiFlicker: 1
   taaMotionVectorRejection: 0
-  taaAntiHistoryRinging: 0
+  taaAntiHistoryRinging: 1
   taaBaseBlendFactor: 0.875
   taaJitterScale: 1
   physicalParameters:
