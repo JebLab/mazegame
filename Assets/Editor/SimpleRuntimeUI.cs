@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
 
 
 public class SimpleRuntimeUI : MonoBehaviour
@@ -18,7 +15,7 @@ public class SimpleRuntimeUI : MonoBehaviour
         Debug.Log("<color=red>Youve entered onEnable()\n</color>");
         // The UXML is already instantiated by the UIDocument component
         var uiDocument = GetComponent<UIDocument>();
-   
+
         _button1 = uiDocument.rootVisualElement.Q("Play") as Button;
 
         Debug.Log("shawn");
@@ -54,16 +51,16 @@ public class SimpleRuntimeUI : MonoBehaviour
         Debug.Log($"{evt.newValue} -> {evt.target}");
     }
 
-/*
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("This is a test");
-    }
+    /*
+        // Start is called before the first frame update
+        void Start()
+        {
+            Debug.Log("This is a test");
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log("This is another test");
-    } */
+        // Update is called once per frame
+        void Update()
+        {
+            Debug.Log("This is another test");
+        } */
 }

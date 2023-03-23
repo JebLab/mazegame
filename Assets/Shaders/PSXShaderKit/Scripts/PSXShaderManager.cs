@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PSXShaderKit
 {
@@ -95,7 +93,7 @@ namespace PSXShaderKit
             {
                 Shader.DisableKeyword("PSX_ENABLE_CUSTOM_VERTEX_LIGHTING");
             }
-            
+
             if (_FlatShadingMode == PSXFlatShadingMode.CenterLight)
             {
                 Shader.EnableKeyword("PSX_FLAT_SHADING_MODE_CENTER");
