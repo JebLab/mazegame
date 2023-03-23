@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class billboard : MonoBehaviour
 {
 
-	void Start ()
+    void Start()
     {
         if (billboard.cam == null)
         {

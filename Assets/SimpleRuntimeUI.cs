@@ -14,7 +14,7 @@ public class SimpleRuntimeUI : MonoBehaviour
     {
         // The UXML is already instantiated by the UIDocument component
         var uiDocument = GetComponent<UIDocument>();
-   
+
         _button1 = uiDocument.rootVisualElement.Q("Play") as Button;
         _button2 = uiDocument.rootVisualElement.Q("Quit") as Button;
 
@@ -45,16 +45,16 @@ public class SimpleRuntimeUI : MonoBehaviour
         Debug.Log($"{evt.newValue} -> {evt.target}");
     }
 
-/*
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("This is a test");
-    }
+    /*
+        // Start is called before the first frame update
+        void Start()
+        {
+            Debug.Log("This is a test");
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log("This is another test");
-    } */
+        // Update is called once per frame
+        void Update()
+        {
+            Debug.Log("This is another test");
+        } */
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -8,7 +7,7 @@ public class cPrecision : MonoBehaviour
     public int colorPrecision = 64;
     public bool usePalette = false;
     public Texture2D palette;
-   
+
     void Awake()
     {
         material = new Material(Shader.Find("Hidden/cPrecision"));

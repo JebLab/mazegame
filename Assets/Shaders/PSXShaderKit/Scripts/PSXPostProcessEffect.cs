@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PSXShaderKit
 {
@@ -125,7 +123,7 @@ namespace PSXShaderKit
             }
 
             RenderTexture postProcessDest;
-            if(_InterlacingSize > 0)
+            if (_InterlacingSize > 0)
             {
                 if (_CurrentFrame)
                 {

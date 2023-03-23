@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class onClickTest : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class onClickTest : MonoBehaviour
         Debug.Log("<color=red>Youve entered onEnable()\n</color>");
         // The UXML is already instantiated by the UIDocument component
         var uiDocument = GetComponent<UIDocument>();
-   
+
         _button1 = uiDocument.rootVisualElement.Q("Play") as Button;
 
         Debug.Log("shawn");
@@ -48,7 +46,7 @@ public class onClickTest : MonoBehaviour
         Debug.Log($"{"Play"} was clicked!");
 
         // main scene holds maze generation
-        SceneManager.LoadScene(sceneName:"MainScene");
+        SceneManager.LoadScene(sceneName: "MainScene");
     }
 
     private void ClickQuit(ClickEvent evt)
