@@ -5,7 +5,7 @@ using UnityEngine;
 public class HybridLook : MonoBehaviour
 {
   [Header("Aiming")]
-  [SerializeField] private Camera m_Camera;
+  [SerializeField] public Camera m_Camera;
   [SerializeField] private float m_XSensitivity = 2f;
   [SerializeField] private float m_YSensitivity = 2f;
   [SerializeField] private bool m_ClampVerticalRotation = true;
@@ -34,7 +34,7 @@ public class HybridLook : MonoBehaviour
     m_CharacterTargetRot = character.transform.localRotation;
     m_CameraTargetRot = camera.transform.localRotation;
   }
-  public void CameraInput(Vector2 c_Input)
+  public void CameraInput(Vector2 c_Input, Transform character, Transform camera)
   {
     float yRot = c_Input.x * m_XSensitivity;
     float xRot = c_Input.y * m_YSensitivity;
@@ -48,17 +48,16 @@ public class HybridLook : MonoBehaviour
 
     if (m_Smooth)
     {
-      c_Chara.transform.localRotation = Quaternion.Slerp(c_Chara.transform.localRotation, m_CharacterTargetRot,
+      character.localRotation = Quaternion.Slerp(character.localRotation, m_CharacterTargetRot,
           m_SmoothTime * Time.deltaTime);
-      m_Camera.transform.localRotation = Quaternion.Slerp(m_Camera.transform.localRotation, m_CameraTargetRot,
+      camera.localRotation = Quaternion.Slerp(camera.localRotation, m_CameraTargetRot,
           m_SmoothTime * Time.deltaTime);
     }
     else
     {
-      c_Chara.transform.localRotation = m_CharacterTargetRot;
-      m_Camera.transform.localRotation = m_CameraTargetRot;
+      character.localRotation = m_CharacterTargetRot;
+      camera.localRotation = m_CameraTargetRot;
     }
-
     UpdateCursorLock();
   }
   public void SetCursorLock(bool value)

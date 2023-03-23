@@ -20,6 +20,8 @@ public class HybridManager : MonoBehaviour
 
   void Start()
   {
+    if (!h_Look.m_Camera)
+      h_Look.m_Camera = Camera.main;
     h_Look.Init(h_Motor.m_Tran, h_Look.m_CamTran);
   }
   void FixedUpdate()
@@ -31,7 +33,7 @@ public class HybridManager : MonoBehaviour
   {
     var g_Camera = g_Player.Look;
     // h_Look.LookRotation(h_Motor.m_Tran, h_Look.m_CamTran);
-    h_Look.CameraInput(g_Camera.ReadValue<Vector2>());
+    h_Look.CameraInput(g_Camera.ReadValue<Vector2>(), h_Motor.m_Tran, h_Look.m_CamTran);
   }
 
   private void OnEnable()
