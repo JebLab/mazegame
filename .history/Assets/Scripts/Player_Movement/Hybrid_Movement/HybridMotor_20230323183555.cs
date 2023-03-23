@@ -118,19 +118,6 @@ public class HybridMotor : MonoBehaviour
     }
   }
 
-  private void QueueCrouch()
-  {
-    if (h_Man.g_Player.Crouch.WasPressedThisFrame())
-    {
-      m_CrouchQueued = true;
-      m_Character.height = .7f;
-    }
-    if (h_Man.g_Player.Crouch.WasReleasedThisFrame())
-    {
-      m_CrouchQueued = false;
-      m_Character.height = 2f;
-    }
-  }
 
   private void AirMove()
   {
