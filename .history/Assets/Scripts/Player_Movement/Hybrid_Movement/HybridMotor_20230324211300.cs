@@ -97,8 +97,6 @@ public class HybridMotor : MonoBehaviour
     if (h_Man.g_Player.Jump.WasPressedThisFrame() && !m_JumpQueued)
     {
       m_JumpQueued = true;
-      m_CrouchQueued = false;
-
     }
 
     if (h_Man.g_Player.Jump.WasReleasedThisFrame())
@@ -240,7 +238,7 @@ public class HybridMotor : MonoBehaviour
 
     if (m_CrouchQueued)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 10f);
+      wishspeed *= (m_GroundSettings.MaxSpeed / 12f);
     }
 
     if (m_isSprinting)

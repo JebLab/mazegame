@@ -240,7 +240,7 @@ public class HybridMotor : MonoBehaviour
 
     if (m_CrouchQueued)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 10f);
+      wishspeed *= (m_GroundSettings.MaxSpeed / 12f);
     }
 
     if (m_isSprinting)
