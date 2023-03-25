@@ -74,7 +74,6 @@ public class HybridMotor : MonoBehaviour
     isSprinting();
     QueueCrouch();
 
-
     // Set movement state.
     if (m_Character.isGrounded)
     {
@@ -132,7 +131,6 @@ public class HybridMotor : MonoBehaviour
     {
       m_isSprinting = false;
       m_Stamina += 2f * Time.deltaTime;
-      p_Stats.cheackStam();
     }
   }
 
