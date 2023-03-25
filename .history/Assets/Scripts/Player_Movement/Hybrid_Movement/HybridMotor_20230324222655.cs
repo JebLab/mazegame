@@ -55,7 +55,7 @@ public class HybridMotor : MonoBehaviour
   // Used to display real time friction values.
   private float m_PlayerFriction = 0;
 
-  public float m_Stamina;
+  private float m_Stamina;
 
   private Vector3 m_MoveInput;
   public Transform m_Tran;
@@ -73,7 +73,6 @@ public class HybridMotor : MonoBehaviour
     QueueJump();
     isSprinting();
     QueueCrouch();
-
 
     // Set movement state.
     if (m_Character.isGrounded)
@@ -121,7 +120,6 @@ public class HybridMotor : MonoBehaviour
         m_Stamina -= 5f * Time.deltaTime;
         m_isSprinting = true;
         m_CrouchQueued = false;
-        p_Stats.cheackStam();
       }
       // m_isSprinting = true;
       // m_CrouchQueued = false;
@@ -132,7 +130,6 @@ public class HybridMotor : MonoBehaviour
     {
       m_isSprinting = false;
       m_Stamina += 2f * Time.deltaTime;
-      p_Stats.cheackStam();
     }
   }
 

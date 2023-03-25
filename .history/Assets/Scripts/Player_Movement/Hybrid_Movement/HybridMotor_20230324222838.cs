@@ -65,7 +65,7 @@ public class HybridMotor : MonoBehaviour
     m_Tran = gameObject.transform;
     m_Character = GetComponent<CharacterController>();
     h_Man = GetComponent<HybridManager>();
-    p_Stats = GetComponent<CharStats>();
+    p_Stats = GetComponent<PlayerStats>();
   }
 
   private void Update()
@@ -73,7 +73,6 @@ public class HybridMotor : MonoBehaviour
     QueueJump();
     isSprinting();
     QueueCrouch();
-
 
     // Set movement state.
     if (m_Character.isGrounded)
@@ -121,7 +120,6 @@ public class HybridMotor : MonoBehaviour
         m_Stamina -= 5f * Time.deltaTime;
         m_isSprinting = true;
         m_CrouchQueued = false;
-        p_Stats.cheackStam();
       }
       // m_isSprinting = true;
       // m_CrouchQueued = false;
@@ -132,7 +130,6 @@ public class HybridMotor : MonoBehaviour
     {
       m_isSprinting = false;
       m_Stamina += 2f * Time.deltaTime;
-      p_Stats.cheackStam();
     }
   }
 

@@ -55,17 +55,18 @@ public class HybridMotor : MonoBehaviour
   // Used to display real time friction values.
   private float m_PlayerFriction = 0;
 
-  public float m_Stamina;
+  private float m_Stamina;
 
   private Vector3 m_MoveInput;
   public Transform m_Tran;
 
   void Start()
   {
-    m_Tran = gameObject.transform;
-    m_Character = GetComponent<CharacterController>();
     h_Man = GetComponent<HybridManager>();
     p_Stats = GetComponent<CharStats>();
+    m_Stamina = p_Stats.currStam;
+    m_Tran = gameObject.transform;
+    m_Character = GetComponent<CharacterController>();
   }
 
   private void Update()
@@ -73,7 +74,6 @@ public class HybridMotor : MonoBehaviour
     QueueJump();
     isSprinting();
     QueueCrouch();
-
 
     // Set movement state.
     if (m_Character.isGrounded)
@@ -114,25 +114,28 @@ public class HybridMotor : MonoBehaviour
 
   public void isSprinting()
   {
-    m_Stamina = p_Stats.currStam;
-    if (h_Man.g_Player.Sprint.WasPressedThisFrame() && (m_Stamina > 0f))
+    if (h_Man.g_Player.Sprint.WasPressedThisFrame())
     {
+      if (m_Stamina > 0f)
       {
-        m_Stamina -= 5f * Time.deltaTime;
         m_isSprinting = true;
         m_CrouchQueued = false;
-        p_Stats.cheackStam();
+        m_Stamina -= 5f * Time.deltaTime;
       }
       // m_isSprinting = true;
       // m_CrouchQueued = false;
 
+
+      if (m_Stamina <= 0)
+      {
+        m_isSprinting = false;
+      }
+
     }
 
-    if (h_Man.g_Player.Sprint.WasReleasedThisFrame() || (m_Stamina <= 0))
+    if (h_Man.g_Player.Sprint.WasReleasedThisFrame())
     {
       m_isSprinting = false;
-      m_Stamina += 2f * Time.deltaTime;
-      p_Stats.cheackStam();
     }
   }
 
