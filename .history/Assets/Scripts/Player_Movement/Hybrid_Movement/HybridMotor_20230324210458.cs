@@ -97,8 +97,6 @@ public class HybridMotor : MonoBehaviour
     if (h_Man.g_Player.Jump.WasPressedThisFrame() && !m_JumpQueued)
     {
       m_JumpQueued = true;
-      m_CrouchQueued = false;
-
     }
 
     if (h_Man.g_Player.Jump.WasReleasedThisFrame())
@@ -112,7 +110,6 @@ public class HybridMotor : MonoBehaviour
     if (h_Man.g_Player.Sprint.WasPressedThisFrame())
     {
       m_isSprinting = true;
-      m_CrouchQueued = false;
     }
 
     if (h_Man.g_Player.Sprint.WasReleasedThisFrame())
@@ -126,7 +123,6 @@ public class HybridMotor : MonoBehaviour
     if (h_Man.g_Player.Crouch.WasPressedThisFrame())
     {
       m_CrouchQueued = true;
-      m_isSprinting = false;
       m_Character.height = .7f;
     }
     if (h_Man.g_Player.Crouch.WasReleasedThisFrame())
@@ -240,12 +236,12 @@ public class HybridMotor : MonoBehaviour
 
     if (m_CrouchQueued)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 10f);
+      wishspeed *= (m_GroundSettings.MaxSpeed / 1);
     }
 
     if (m_isSprinting)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed * .50f);
+      wishspeed *= (m_GroundSettings.MaxSpeed / .375f);
     }
 
     Accelerate(wishdir, wishspeed, m_GroundSettings.Acceleration);

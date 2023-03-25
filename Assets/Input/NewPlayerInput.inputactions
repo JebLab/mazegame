@@ -165,7 +165,7 @@
                 {
                     "name": "",
                     "id": "24589223-3210-4456-a62b-639d3de008ed",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
