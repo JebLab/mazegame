@@ -5,7 +5,7 @@ Button {
 }
 
 #Play {
-    -unity-font-style: italic;
+    /* -unity-font-style: italic; */
 }
 
 #Boxy {
