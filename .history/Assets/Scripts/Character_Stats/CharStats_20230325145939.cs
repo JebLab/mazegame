@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharStats : MonoBehaviour
+public class CharacterStats : MonoBehaviour
 {
   public double currHP, maxHP, currStam, maxStam;
 

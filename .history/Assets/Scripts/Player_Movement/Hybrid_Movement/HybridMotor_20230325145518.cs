@@ -4,7 +4,7 @@ using UnityEngine;
 public class HybridMotor : MonoBehaviour
 {
   private HybridManager h_Man;
-  private CharacterStats p_Stats;
+  private CharStats p_Stats;
 
   [Serializable]
   public class MovementSettings
@@ -48,7 +48,7 @@ public class HybridMotor : MonoBehaviour
   // Used to queue the next jump just before hitting the ground.
   private bool m_JumpQueued = false;
 
-  public bool m_isSprinting = false;
+  private bool m_isSprinting = false;
 
   private bool m_CrouchQueued = false;
 
@@ -65,7 +65,7 @@ public class HybridMotor : MonoBehaviour
     m_Tran = gameObject.transform;
     m_Character = GetComponent<CharacterController>();
     h_Man = GetComponent<HybridManager>();
-    p_Stats = GetComponent<CharacterStats>();
+    p_Stats = GetComponent<CharStats>();
   }
 
   private void Update()
@@ -114,26 +114,26 @@ public class HybridMotor : MonoBehaviour
 
   public void isSprinting()
   {
-    m_Stamina = p_Stats.currentStamina;
-    if (h_Man.g_Player.Sprint.WasPressedThisFrame() && (m_Stamina > 0f) && m_MoveInput != Vector3.zero && p_Stats.hasRegened)
+    m_Stamina = p_Stats.currStam;
+    if (h_Man.g_Player.Sprint.WasPressedThisFrame() && (m_Stamina > 0f))
     {
       {
+        m_Stamina -= 5 * Time.deltaTime;
         m_isSprinting = true;
         m_CrouchQueued = false;
-        p_Stats.StaminaDrain = 5;
-        m_Stamina -= p_Stats.StaminaDrain * Time.deltaTime;
-
+        p_Stats.cheackStam();
       }
       // m_isSprinting = true;
       // m_CrouchQueued = false;
 
     }
 
-    if (h_Man.g_Player.Sprint.WasReleasedThisFrame())
+    if (h_Man.g_Player.Sprint.WasReleasedThisFrame() || (m_Stamina <= 0))
     {
       m_isSprinting = false;
+      m_Stamina += 2 * Time.deltaTime;
+      p_Stats.cheackStam();
     }
-    if (m_Stamina <= 0) { p_Stats.hasRegened = false; }
   }
 
   private void QueueCrouch()

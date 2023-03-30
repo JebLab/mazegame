@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 9166124813167340420}
   - component: {fileID: 9166124813167340421}
   - component: {fileID: 9166124813167340422}
-  - component: {fileID: 9166124813167340423}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -204,23 +203,6 @@ MonoBehaviour:
     Deceleration: 50
   m_Stamina: 0
   m_Tran: {fileID: 9166124813167340445}
---- !u!114 &9166124813167340423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166124813167340437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebdb5cb14f035a5aa3befdf8cd501cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currHP: 0
-  maxHP: 100
-  currStam: 0
-  maxStam: 100
-  m_isDead: 0
 --- !u!1 &9166124813862511403
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,8 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -349,7 +331,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

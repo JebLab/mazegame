@@ -129,11 +129,12 @@ public class HybridMotor : MonoBehaviour
 
     }
 
-    if (h_Man.g_Player.Sprint.WasReleasedThisFrame())
+    if (h_Man.g_Player.Sprint.WasReleasedThisFrame() || (m_Stamina <= 0))
     {
       m_isSprinting = false;
+      m_Stamina += 2 * Time.deltaTime;
+      // p_Stats.cheackStam();
     }
-    if (m_Stamina <= 0) { p_Stats.hasRegened = false; }
   }
 
   private void QueueCrouch()
