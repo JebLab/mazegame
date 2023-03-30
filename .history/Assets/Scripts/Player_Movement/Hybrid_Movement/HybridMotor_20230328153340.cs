@@ -133,7 +133,7 @@ public class HybridMotor : MonoBehaviour
     {
       m_isSprinting = false;
     }
-    if (m_Stamina <= 0) { p_Stats.hasRegened = false; }
+
   }
 
   private void QueueCrouch()
