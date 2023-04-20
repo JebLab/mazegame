@@ -99,9 +99,13 @@ public class onClickTest : MonoBehaviour
             _volSlider.style.width = new StyleLength(new Length(50, Percent));
             _volSlider.style.position = new StyleEnum<Position>(Relative);
             _volSlider.style.left = new StyleLength(new Length(25, Percent));
+            _volSlider.highValue = 1.0f;
             Debug.Log("VolSlider has a low value of " + _volSlider.lowValue + "and a high value of " + _volSlider.highValue);
             // _Bux.Add(_volSlider);
             Debug.Log("The range of the slider is " + _volSlider.range + "; it's low value is " + _volSlider.lowValue + " & high value is " + _volSlider.highValue);
+            // _volSlider.onValueChanged.AddListener(delegate { changeVolume(_volSlider.value); });
+            _volSlider.RegisterCallback<ClickEvent>(changeVolume);
+            _volSlider.value = 0.5f;
         }
         // Must refactor everything inside this if
         // Did this when tired, it's an abomination of code
@@ -181,6 +185,10 @@ public class onClickTest : MonoBehaviour
    IEnumerator quitFunc(int myParam) {
         yield return new WaitForSeconds(myParam);
         Quit();
+    }
+
+    void changeVolume(ClickEvent evt) {
+        AudioListener.volume = _volSlider.value;
     }
 
     // Stolen straight from Stack Overflow, works in the Editor
