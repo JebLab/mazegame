@@ -28,41 +28,47 @@ public class onClickTest : MonoBehaviour
     public Animator transition;
 
     private AudioSource buttSound;
+    // Called playSound, but it plays when both Start and Quit are clicked
+    private AudioSource playSound;
 
     private Animator animaniacs;
 
     private UIDocument uiDocument;
 
 
+    public void Blargh() {
+        UIElemFact fart = new UIElemFact();
+        fart.createButton();
+    }
+
     //Add logic that interacts with the UI controls in the `OnEnable` methods
     private void OnEnable()
     {
-        Debug.Log("<color=red>Youve entered onEnable()\n</color>");
+        #if UNITY_EDITOR
+        Debug.Log("You've entered onEnable()\n");
+        #endif
         // The UXML is already instantiated by the UIDocument component
         uiDocument = GetComponent<UIDocument>();
    
         _button1 = uiDocument.rootVisualElement.Q("Play") as Button;
-
-        Debug.Log("shawn");
-
         _button2 = uiDocument.rootVisualElement.Q("Quit") as Button;
         _Settings = uiDocument.rootVisualElement.Q("Set") as Button;
-
         _Bux = uiDocument.rootVisualElement.Q("Boxy") as Label;
 
         _button1.RegisterCallback<ClickEvent>(ClickPlay);
         _button2.RegisterCallback<ClickEvent>(ClickQuit);
         _Settings.RegisterCallback<ClickEvent>(ClickSettings);
 
-        // buttSound = FindObjectOfType<AudioSource>();
         buttSound = GameObject.Find("ButtonSfx").GetComponent<AudioSource>();
-        // Debug.Log(GameObject.Find("ButtonSfx").ToString());
-
+        playSound = GameObject.Find("PlaySfx").GetComponent<AudioSource>();
         animaniacs = FindObjectOfType<Animator>();
-
+        
+        // As far as I'm aware, StartCoroutine is the only way to make a method sleep for a specified time
         StartCoroutine(LoadLevel(0));
-        Debug.Log("OnEnable was called!");
-
+        
+        #if UNITY_EDITOR
+        Debug.Log("Exiting onEnable!");
+        #endif
     }
 
     private void OnDisable()
@@ -70,6 +76,7 @@ public class onClickTest : MonoBehaviour
         _button1.UnregisterCallback<ClickEvent>(ClickPlay);
         _button2.UnregisterCallback<ClickEvent>(ClickQuit);
         _Settings.UnregisterCallback<ClickEvent>(ClickSettings);
+        _volSlider.UnregisterCallback<ClickEvent>(changeVolume);
         if(_backButton != null) {
             _backButton.UnregisterCallback<ClickEvent>(ClickBack);
         }
@@ -77,9 +84,10 @@ public class onClickTest : MonoBehaviour
 
     private void ClickPlay(ClickEvent evt)
     {
-
-        Debug.Log($"{"Play"} was clicked!");
-        buttSound.Play(0);
+        #if UNITY_EDITOR
+        Debug.Log("Play was clicked!");
+        #endif
+        playSound.Play(0);
         animaniacs.SetBool("IsClickedStart", true);
         Destroy(uiDocument);
         StartCoroutine(sceneTrans());
@@ -92,7 +100,9 @@ public class onClickTest : MonoBehaviour
 
     private void ClickSettings(ClickEvent evt)
     {
-        Debug.Log($"{"Settings"} was clicked.");
+        #if UNITY_EDITOR
+        Debug.Log("Settings was clicked.");
+        #endif
         if(_volSlider == null) {
             _volSlider = new Slider();
             _volSlider.name = "Sfx";
@@ -100,12 +110,13 @@ public class onClickTest : MonoBehaviour
             _volSlider.style.position = new StyleEnum<Position>(Relative);
             _volSlider.style.left = new StyleLength(new Length(25, Percent));
             _volSlider.highValue = 1.0f;
-            Debug.Log("VolSlider has a low value of " + _volSlider.lowValue + "and a high value of " + _volSlider.highValue);
-            // _Bux.Add(_volSlider);
+            #if UNITY_EDITOR
             Debug.Log("The range of the slider is " + _volSlider.range + "; it's low value is " + _volSlider.lowValue + " & high value is " + _volSlider.highValue);
-            // _volSlider.onValueChanged.AddListener(delegate { changeVolume(_volSlider.value); });
+            #endif
             _volSlider.RegisterCallback<ClickEvent>(changeVolume);
-            _volSlider.value = 0.5f;
+            _volSlider.value = AudioListener.volume;
+            Debug.Log("AudioListener has a volume of " + AudioListener.volume);
+            Blargh();
         }
         // Must refactor everything inside this if
         // Did this when tired, it's an abomination of code
@@ -119,15 +130,16 @@ public class onClickTest : MonoBehaviour
             _backButton.style.left = new StyleLength(new Length(25, Percent));
             _backButton.style.marginTop = new StyleLength(new Length(1, Pixel));
             _backButton.style.top = new StyleLength(new Length(25, Percent));
+            #if UNITY_EDITOR
             Debug.Log("The back button has a position of " + _backButton.style.position.ToString());
+            #endif
             _backButton.text = "Back";
             _backButton.tooltip = "Blahahahahaha";
-            Debug.Log("The tooltip is " + _Bux.text);
             _backButton.RegisterCallback<ClickEvent>(ClickBack);
         }
         uiDocument.rootVisualElement.Clear();
         uiDocument.rootVisualElement.Add(_Bux);
-        /* Box frankenstein = new Box(); */
+
         // Originally intended frankenstein to be a box, but
         // boxes can't have text fields :(
         Label frankenstein = new Label();
@@ -142,13 +154,16 @@ public class onClickTest : MonoBehaviour
         frankenstein.text = " Sound Volume";
         frankenstein.Add(_volSlider);
         uiDocument.rootVisualElement.Add(frankenstein);
+        #if UNITY_EDITOR
         Debug.Log("Bux is " + _Bux.ToString());
+        if(_Settings == null) Debug.Log("I'm null!");
+        else Debug.Log("I'm not null.");
+        #endif
         uiDocument.rootVisualElement.Add(_Settings);
         uiDocument.rootVisualElement.Add(_backButton);
-        // uiDocument.rootVisualElement.Add(_volSlider);
+        #if UNITY_EDITOR
         Debug.Log("You now have " + uiDocument.rootVisualElement.childCount + " children.");
-        Debug.Log("Settings is attached to panel " + _Settings.panel.ToString());
-        Debug.Log("This is Settings style position: " + _Settings.style.position.ToString());
+        #endif
         buttSound.Play(0);
     }
 
@@ -164,19 +179,10 @@ public class onClickTest : MonoBehaviour
 
     private void ClickQuit(ClickEvent evt)
     {
-        Debug.Log($"{"Quit"} was clicked");
-        buttSound.Play(0);
+        Debug.Log("Quit was clicked");
+        playSound.Play(0);
         animaniacs.SetBool("IsClickedStart", true);
         
-
-        // The below multiline commented-out code can be ignored
-        // I was trying to figure out how to hide the UI elements
-        // Then I realized I can destroy the UIDocument object, which is way easier
-
-        /* var MooseKnuckle = new StyleColor(new Color(0.3f, 0.4f, 0.6f, 0.0f));
-        uiDocument.rootVisualElement.Q("Play").style.backgroundColor = MooseKnuckle;
-        Debug.Log(MooseKnuckle); */
-
         Destroy(uiDocument);
 
         StartCoroutine(quitFunc(1));
@@ -203,8 +209,6 @@ public class onClickTest : MonoBehaviour
     }
 
     IEnumerator LoadLevel(int levelIndex) {
-        // transition.SetTrigger("StartScene");
-        
         yield return new WaitForSeconds(1);
     }
 }
