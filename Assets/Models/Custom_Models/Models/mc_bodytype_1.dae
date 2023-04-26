@@ -5,8 +5,8 @@
       <author>Blockbench user</author>
       <authoring_tool>Blockbench</authoring_tool>
     </contributor>
-    <created>2023-04-18T15:05:31.776Z</created>
-    <modified>2023-04-18T15:05:31.776Z</modified>
+    <created>2023-04-18T15:47:08.901Z</created>
+    <modified>2023-04-18T15:47:08.901Z</modified>
     <unit name="meter" meter="1.0"/>
     <up_axis>Y_UP</up_axis>
   </asset>
@@ -10980,13 +10980,13 @@
                   </node>
                   <node id="aff1d033-37a3-26a6-f6e8-11531a8ff656" name="bone2" type="NODE">
                     <scale sid="scale">1 1 1</scale>
-                    <translate sid="location">0.16367337816871663 0.19091315735090886 0.0037500000000000072</translate>
+                    <translate sid="location">0.0019808805367139692 -0.06299676982629276 0.0024675813522271207</translate>
                     <rotate sid="rotationZ">0 0 1 0</rotate>
                     <rotate sid="rotationY">0 1 0 0</rotate>
                     <rotate sid="rotationX">1 0 0 0</rotate>
                     <node id="cf3d6189-a4a1-4853-7886-66d4535ba366" name="cube" type="NODE">
                       <scale sid="scale">1 1 1</scale>
-                      <translate sid="location">-0.14583411807317048 -0.274342899404594 -0.0012824186477728866</translate>
+                      <translate sid="location">0.01585837955883218 -0.020432972227392376 0</translate>
                       <rotate sid="rotationX">1 0 0 0</rotate>
                       <rotate sid="rotationY">0 1 0 0</rotate>
                       <rotate sid="rotationZ">0 0 1 27.5</rotate>
@@ -10999,7 +10999,7 @@
                     </node>
                     <node id="32d518f4-ffec-1b86-e373-813d3ba56f41" name="cube" type="NODE">
                       <scale sid="scale">1 1 1</scale>
-                      <translate sid="location">-0.14583411807317048 -0.274342899404594 -0.0012824186477728866</translate>
+                      <translate sid="location">0.01585837955883218 -0.020432972227392376 0</translate>
                       <rotate sid="rotationX">1 0 0 0</rotate>
                       <rotate sid="rotationY">0 1 0 0</rotate>
                       <rotate sid="rotationZ">0 0 1 27.5</rotate>
@@ -11012,7 +11012,7 @@
                     </node>
                     <node id="09c58af8-76fa-a520-d88f-2db7e4e8dbbe" name="cube" type="NODE">
                       <scale sid="scale">1 1 1</scale>
-                      <translate sid="location">-0.14583411807317048 -0.274342899404594 -0.0012824186477728866</translate>
+                      <translate sid="location">0.01585837955883218 -0.020432972227392376 0</translate>
                       <rotate sid="rotationX">1 0 0 0</rotate>
                       <rotate sid="rotationY">0 1 0 0</rotate>
                       <rotate sid="rotationZ">0 0 1 27.5</rotate>
