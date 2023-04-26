@@ -36,7 +36,6 @@ public class CharacterStats : MonoBehaviour
   private void Start()
   {
     Motor = GetComponent<HybridMotor>();
-
   }
 
   private void Update()
