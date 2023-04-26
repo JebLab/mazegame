@@ -38,5 +38,25 @@ public class CharacterStats : MonoBehaviour
   {
 
     //Motor = GetComponent<HybridMotor>();
+    //if (Motor.m_isSprinting == false)
+    //{
+    //    if (currentStamina <= maxStamina - 0.01f)
+    //    {
+    //        StaminaRegen = 2;
+    //        currentStamina += StaminaRegen * Time.deltaTime;
+    //        if (currentStamina >= maxStamina)
+    //        {
+    //            currentStamina = maxStamina;
+    //            hasRegened = true;
+    //        }
+    //    }
+    //    if (!hasRegened)
+    //    {
+    //        StaminaRegen = 0.5f;
+    //        currentStamina += StaminaRegen * Time.deltaTime;
+    //    }
+
+    //}
   }
+
 }

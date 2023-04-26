@@ -129,7 +129,7 @@ public class HybridMotor : MonoBehaviour
         m_isSprinting = true;
         m_CrouchQueued = false;
         //p_Stats.StaminaDrain = 5;
-        m_Stamina -= 5 * Time.fixedDeltaTime;
+        m_Stamina -= 5 * Time.deltaTime;
 
       }
       // m_isSprinting = true;
@@ -147,7 +147,7 @@ public class HybridMotor : MonoBehaviour
 
       if (m_Stamina <= m_maxStamina - 0.01f && m_hasRegened)
       {
-        m_Stamina += 2 * Time.fixedDeltaTime;
+        m_Stamina += 2 * Time.deltaTime;
         if (m_Stamina >= m_maxStamina)
         {
           m_Stamina = m_maxStamina;
@@ -156,7 +156,7 @@ public class HybridMotor : MonoBehaviour
       if (m_Stamina <= 1) { m_hasRegened = false; }
       if (!m_hasRegened)
       {
-        m_Stamina += 0.5f * Time.fixedDeltaTime;
+        m_Stamina += 0.5f * Time.deltaTime;
         m_isSprinting = false;
         if (m_Stamina >= m_maxStamina)
         {
