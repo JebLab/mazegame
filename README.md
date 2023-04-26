@@ -8,7 +8,7 @@ In Design Phase
 
 ### Programmers
 
-- Jalen J. Dear | Player Interaction
+- Jalen J. Dear | Player Interaction and Modeling
 - Joshua Smith | AI and Enviroments
 - Alex Burrell | Story and UI
 
@@ -20,8 +20,11 @@ In Design Phase
 ## Introduction
 
 ### Synopsis
-
+OLD:
 A new student from Willams County Highschool is taken to the abandoned Hillman Industrail College and locked in by bullies. "HiC" was shuddered in the 1910s for reasons unknown but is assumed to have closed from the Flu Pandemic of 1918. Upon entering the school and exploring for abit the player suddenly transported to a twisted version of their highschool.
+
+NEW: 
+IDK
 
 ## Objectives
 
@@ -29,8 +32,8 @@ A new student from Willams County Highschool is taken to the abandoned Hillman I
 - [ ] Illusion of infinite labyrinth using "gates" or other tricks
 - [ ] Add UI Elements
 - [ ] Add Player UI Interactions
-- [ ] Textures and Polishing
-- [ ] Mouse Lock
+- [x] Textures and Polishing
+- [x] Mouse Lock
 - [ ] Interactable Enviroments
 - [ ] PS1/Half-life Era Models and Textures
 - [ ] Multiple Levels with increasingly added stakes
