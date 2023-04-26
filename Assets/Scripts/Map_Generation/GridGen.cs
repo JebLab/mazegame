@@ -255,10 +255,13 @@ public class GridGen : MonoBehaviour
     public NavMeshSurface surface;
     public NavMeshAgent enemy;
     public GameObject player;
+    //public int EditorLength;
+    //public int EditorWidth;
+
 
     // Size of grid
-    public static int length = 20;
-    public static int width = 20;
+    public static int length = 9;
+    public static int width = 9;
 
     // -3.7 is ground level for some reason
     public float height = (float)-3.7;
@@ -279,6 +282,11 @@ public class GridGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    //    if (EditorLength != null)
+    //        length = EditorLength;
+    //    if (EditorWidth != null)
+    //        width = EditorWidth;
+
         // i is x axis, j is z axis
         // generate grid
         for (int i = 0; i < length; i++)
