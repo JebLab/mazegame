@@ -4,6 +4,7 @@ using UnityEngine;
 public class HybridMotor : MonoBehaviour
 {
   private HybridManager h_Man;
+  private CharacterStats p_Stats;
 
   [Serializable]
   public class MovementSettings
@@ -47,17 +48,14 @@ public class HybridMotor : MonoBehaviour
   // Used to queue the next jump just before hitting the ground.
   private bool m_JumpQueued = false;
 
-  private bool m_isSprinting = false;
-  private bool m_hasRegened = true;
+  public bool m_isSprinting = false;
 
   private bool m_CrouchQueued = false;
 
   // Used to display real time friction values.
   private float m_PlayerFriction = 0;
 
-  private double m_Stamina;
-
-  private double m_maxStamina = 101;
+  public double m_Stamina;
 
   private Vector3 m_MoveInput;
   public Transform m_Tran;
@@ -67,8 +65,7 @@ public class HybridMotor : MonoBehaviour
     m_Tran = gameObject.transform;
     m_Character = GetComponent<CharacterController>();
     h_Man = GetComponent<HybridManager>();
-
-    m_Stamina = m_maxStamina;
+    p_Stats = GetComponent<CharacterStats>();
   }
 
   private void Update()
@@ -77,9 +74,6 @@ public class HybridMotor : MonoBehaviour
     isSprinting();
     QueueCrouch();
 
-    Debug.Log(m_Stamina);
-    Debug.Log(m_hasRegened);
-    Debug.Log(m_isSprinting);
 
     // Set movement state.
     if (m_Character.isGrounded)
@@ -120,54 +114,26 @@ public class HybridMotor : MonoBehaviour
 
   public void isSprinting()
   {
-    if (h_Man.g_Player.Sprint.IsPressed() && (m_Stamina > 1) && m_MoveInput != Vector3.zero && m_hasRegened)
+    m_Stamina = p_Stats.currentStamina;
+    if (h_Man.g_Player.Sprint.IsPressed() && (m_Stamina > 0f) && m_MoveInput != Vector3.zero && p_Stats.hasRegened)
     {
       {
-
-        Debug.Log("sprint pressed");
-
         m_isSprinting = true;
         m_CrouchQueued = false;
-        //p_Stats.StaminaDrain = 5;
-        m_Stamina -= 5 * Time.fixedDeltaTime;
+        p_Stats.StaminaDrain = 5;
+        m_Stamina -= p_Stats.StaminaDrain * Time.deltaTime;
 
       }
       // m_isSprinting = true;
       // m_CrouchQueued = false;
+
     }
-    else m_isSprinting = false;
 
     if (h_Man.g_Player.Sprint.WasReleasedThisFrame())
     {
       m_isSprinting = false;
     }
-
-    if (m_isSprinting == false)
-    {
-
-      if (m_Stamina <= m_maxStamina - 0.01f && m_hasRegened)
-      {
-        m_Stamina += 2 * Time.fixedDeltaTime;
-        if (m_Stamina >= m_maxStamina)
-        {
-          m_Stamina = m_maxStamina;
-        }
-      }
-      if (m_Stamina <= 1) { m_hasRegened = false; }
-      if (!m_hasRegened)
-      {
-        m_Stamina += 0.5f * Time.fixedDeltaTime;
-        m_isSprinting = false;
-        if (m_Stamina >= m_maxStamina)
-        {
-          m_Stamina = m_maxStamina;
-          m_hasRegened = true;
-        }
-      }
-    }
-
-
-
+    if (m_Stamina <= 0) { p_Stats.hasRegened = false; }
   }
 
   private void QueueCrouch()
@@ -289,12 +255,12 @@ public class HybridMotor : MonoBehaviour
 
     if (m_CrouchQueued)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 10);
+      wishspeed *= (m_GroundSettings.MaxSpeed / 10f);
     }
 
     if (m_isSprinting)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 5);
+      wishspeed *= (m_GroundSettings.MaxSpeed * .50f);
     }
 
     Accelerate(wishdir, wishspeed, m_GroundSettings.Acceleration);

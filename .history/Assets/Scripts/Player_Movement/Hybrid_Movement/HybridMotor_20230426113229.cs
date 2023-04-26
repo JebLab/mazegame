@@ -77,9 +77,6 @@ public class HybridMotor : MonoBehaviour
     isSprinting();
     QueueCrouch();
 
-    Debug.Log(m_Stamina);
-    Debug.Log(m_hasRegened);
-    Debug.Log(m_isSprinting);
 
     // Set movement state.
     if (m_Character.isGrounded)
@@ -123,13 +120,13 @@ public class HybridMotor : MonoBehaviour
     if (h_Man.g_Player.Sprint.IsPressed() && (m_Stamina > 1) && m_MoveInput != Vector3.zero && m_hasRegened)
     {
       {
-
+        Debug.Log(m_Stamina);
         Debug.Log("sprint pressed");
 
         m_isSprinting = true;
         m_CrouchQueued = false;
         //p_Stats.StaminaDrain = 5;
-        m_Stamina -= 5 * Time.fixedDeltaTime;
+        m_Stamina -= 5;
 
       }
       // m_isSprinting = true;
@@ -147,7 +144,7 @@ public class HybridMotor : MonoBehaviour
 
       if (m_Stamina <= m_maxStamina - 0.01f && m_hasRegened)
       {
-        m_Stamina += 2 * Time.fixedDeltaTime;
+        m_Stamina += 2;
         if (m_Stamina >= m_maxStamina)
         {
           m_Stamina = m_maxStamina;
@@ -156,7 +153,7 @@ public class HybridMotor : MonoBehaviour
       if (m_Stamina <= 1) { m_hasRegened = false; }
       if (!m_hasRegened)
       {
-        m_Stamina += 0.5f * Time.fixedDeltaTime;
+        m_Stamina += 0.05f;
         m_isSprinting = false;
         if (m_Stamina >= m_maxStamina)
         {
@@ -289,12 +286,12 @@ public class HybridMotor : MonoBehaviour
 
     if (m_CrouchQueued)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 10);
+      wishspeed *= (m_GroundSettings.MaxSpeed / 12.5f);
     }
 
     if (m_isSprinting)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 5);
+      wishspeed *= (m_GroundSettings.MaxSpeed * .125f);
     }
 
     Accelerate(wishdir, wishspeed, m_GroundSettings.Acceleration);
