@@ -373,7 +373,7 @@ MonoBehaviour:
   gridTile: {fileID: 1457407101483484711, guid: 796f5d7ac24e79049b0d49ab59de514b, type: 3}
   surface: {fileID: 2003184450}
   enemy: {fileID: 7069632183988816024, guid: 5858fcdc5cd23f24592d81a339c5eefc, type: 3}
-  player: {fileID: 9166124813167340437, guid: 3a590d14ea5339d32a8788c67000e567, type: 3}
+  player: {fileID: 4471309255964242044, guid: 3a590d14ea5339d32a8788c67000e567, type: 3}
   height: -3.7
 --- !u!4 &2003184449
 Transform:
