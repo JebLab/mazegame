@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blockbench user</author>
+      <authoring_tool>Blockbench</authoring_tool>
+    </contributor>
+    <created>2023-04-27T21:14:02.200Z</created>
+    <modified>2023-04-27T21:14:02.200Z</modified>
+    <unit name="meter" meter="1.0"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material_0-effect">
+      <profile_COMMON>
+        <newparam sid="Image_0-surface">
+          <surface type="2D">
+            <init_from>Image_0</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="Image_0-sampler">
+          <sampler2D>
+            <source>Image_0-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="Image_0-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="Image_0" name="Image_0">
+      <init_from>Door_Industrial_01_Brown.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_0-material" name="Material_0">
+      <instance_effect url="#Material_0-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh" name="cube">
+      <mesh>
+        <source id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-positions">
+          <float_array id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-positions-array" count="24">0.40625 2.0625 0.03125 0.40625 2.0625 -0.03125 0.40625 0 0.03125 0.40625 0 -0.03125 -0.40625 2.0625 0.03125 -0.40625 2.0625 -0.03125 -0.40625 0 0.03125 -0.40625 0 -0.03125</float_array>
+          <technique_common>
+            <accessor source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals">
+          <float_array id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals-array" count="18">1 0 0 -1 0 0 0 1 0 0 -1 0 0 0 -1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0">
+          <float_array id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0-array" count="48">0.003906 1 0 1 0 0.902344 0.003906 0.902344 0.003906 0.902344 0.003906 1 0 1 0 0.902344 0 0.996094 0.003906 0.996094 0.003906 1 0 1 0.003906 0.996094 0.003906 1 0 1 0 0.996094 0.933594 0.925781 0.511719 0.925781 0.511719 0.027344 0.933594 0.027344 0.492188 0.035156 0.492188 0.933594 0.070313 0.933594 0.070313 0.035156</float_array>
+          <technique_common>
+            <accessor source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="eb5faba8-3318-bfca-1845-c9b42843b468-mesh-vertices">
+          <input semantic="POSITION" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-positions"/>
+        </vertices>
+        <polylist material="Material_-1-material" count="6">
+          <input semantic="VERTEX" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0" offset="2" set="0"/>
+          <vcount>4</vcount>
+          <p>1 0 0 0 0 1 2 0 2 3 0 3</p>
+        </polylist>
+        <polylist material="Material_-1-material" count="6">
+          <input semantic="VERTEX" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0" offset="2" set="0"/>
+          <vcount>4</vcount>
+          <p>6 1 4 4 1 5 5 1 6 7 1 7</p>
+        </polylist>
+        <polylist material="Material_-1-material" count="6">
+          <input semantic="VERTEX" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0" offset="2" set="0"/>
+          <vcount>4</vcount>
+          <p>4 2 8 0 2 9 1 2 10 5 2 11</p>
+        </polylist>
+        <polylist material="Material_-1-material" count="6">
+          <input semantic="VERTEX" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0" offset="2" set="0"/>
+          <vcount>4</vcount>
+          <p>3 3 12 2 3 13 6 3 14 7 3 15</p>
+        </polylist>
+        <polylist material="Material_0-material" count="6">
+          <input semantic="VERTEX" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4</vcount>
+          <p>5 4 16 1 4 17 3 4 18 7 4 19 2 5 20 0 5 21 4 5 22 6 5 23</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="eb5faba8-3318-bfca-1845-c9b42843b468" name="cube" type="NODE">
+        <scale sid="scale">1 1 1</scale>
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <instance_geometry url="#eb5faba8-3318-bfca-1845-c9b42843b468-mesh" name="cube">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_0-material" target="#Material_0-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

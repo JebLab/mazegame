@@ -154,13 +154,13 @@ MonoBehaviour:
   m_Gravity: 20
   m_JumpForce: 4
   m_AutoBunnyHop: 0
-  m_AirControl: 0.3
+  m_AirControl: 0
   m_GroundSettings:
-    MaxSpeed: 7
+    MaxSpeed: 5
     Acceleration: 14
     Deceleration: 10
   m_AirSettings:
-    MaxSpeed: 7
+    MaxSpeed: 0
     Acceleration: 2
     Deceleration: 2
   m_StrafeSettings:
@@ -193,13 +193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 4471309257308593338}
-  m_XSensitivity: 2
-  m_YSensitivity: 2
+  m_XSensitivity: 1
+  m_YSensitivity: 1
   m_ClampVerticalRotation: 1
   m_MinimumX: -90
   m_MaximumX: 90
-  m_Smooth: 0
-  m_SmoothTime: 5
+  m_Smooth: 1
+  m_SmoothTime: 10
   m_LockCursor: 1
   m_CamTran: {fileID: 4471309257308593342}
 --- !u!1 &4471309256733779029
@@ -290,7 +290,6 @@ GameObject:
   - component: {fileID: 4471309257308593338}
   - component: {fileID: 4471309257308593341}
   - component: {fileID: 4471309257308593340}
-  - component: {fileID: 75569122416678249}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -346,7 +345,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 3f021ff985312c5e6874cfcd14758966, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -489,27 +488,6 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
---- !u!114 &75569122416678249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4471309257308593337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a4c69f7a9d3ea43907b5765229dc85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _TextureWarpingFactor: 1
-  _TextureWarpingMode: 1
-  _VertexGridResolution: 100
-  _UseRetroVertexLighting: 1
-  _RetroLightingNormalFactor: 0.5
-  _RetroLightFalloffStart: 0.5
-  _FlatShadingMode: 0
-  _TriangleSortMode: 4
-  _DepthDebugView: 0
 --- !u!1 &4471309257864285111
 GameObject:
   m_ObjectHideFlags: 0

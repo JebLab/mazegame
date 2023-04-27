@@ -294,7 +294,7 @@ public class HybridMotor : MonoBehaviour
 
     if (m_isSprinting)
     {
-      wishspeed *= (m_GroundSettings.MaxSpeed / 3.5f);
+      wishspeed *= (m_GroundSettings.MaxSpeed / 1.5f);
     }
 
     Accelerate(wishdir, wishspeed, m_GroundSettings.Acceleration);
