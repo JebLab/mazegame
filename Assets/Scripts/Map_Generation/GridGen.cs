@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using TMPro;
 using Unity.AI.Navigation;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -99,7 +96,7 @@ public class Tile
                     GameObject.Destroy(pillarBL);
                     pillarBL = null;
                 }
-                else if (frontWall == null) 
+                else if (frontWall == null)
                 {
                     GameObject.Destroy(pillarFL);
                     pillarFL = null;
@@ -260,8 +257,8 @@ public class GridGen : MonoBehaviour
 
 
     // Size of grid
-    public static int length = 9;
-    public static int width = 9;
+    public static int length = 4;
+    public static int width = 4;
 
     // -3.7 is ground level for some reason
     public float height = (float)-3.7;
@@ -279,13 +276,18 @@ public class GridGen : MonoBehaviour
     private Tile startPoint, endPoint;
     private Directions startSide, endSide;
 
+    public Tile[,] getGrid()
+    {
+        return grid;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-    //    if (EditorLength != null)
-    //        length = EditorLength;
-    //    if (EditorWidth != null)
-    //        width = EditorWidth;
+        //    if (EditorLength != null)
+        //        length = EditorLength;
+        //    if (EditorWidth != null)
+        //        width = EditorWidth;
 
         // i is x axis, j is z axis
         // generate grid
@@ -303,10 +305,12 @@ public class GridGen : MonoBehaviour
                 Tile tile = new Tile(temp);
                 //tile.setText(i + "," + j);
 
+                tile.coord = i + " " + j;
+
                 grid[i, j] = tile;
                 cellList.Add(tile);
 
-                if(i == 0 || j == 0 || i == length - 1 || j == width - 1)
+                if (i == 0 || j == 0 || i == length - 1 || j == width - 1)
                 {
                     tile.edgeTile = true;
                 }
@@ -346,7 +350,7 @@ public class GridGen : MonoBehaviour
         int randomStart, randomEnd;
         // next decide start and end, remove appropriate walls
 
-        
+
         // randomly pick 2 edge tiles to start and end on
         switch (random.Next(0, 4))
         {
@@ -924,6 +928,7 @@ public class GridGen : MonoBehaviour
 
     // Update is called once per frame
     private bool done;
+    private ClickController enemyLocation;
     void Update()
     {
         if (done == false)
@@ -933,6 +938,7 @@ public class GridGen : MonoBehaviour
 
             Instantiate(enemy, new Vector3(randx, height, randy), Quaternion.identity);
         }
+
 
     }
 
