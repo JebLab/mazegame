@@ -17,5 +17,7 @@ Button {
 }
 
 #Boxy {
-    background-color: rgb(160, 130, 30);
+    /* background-color: rgb(160, 130, 30); */
+    opacity: 0.95;
+    background-color: rgb(96, 78, 18);
 }
