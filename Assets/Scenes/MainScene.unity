@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6230068, g: 0.5130167, b: 0.5130167, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -178,7 +178,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-132000
+  m_Name: pb_Mesh-51140
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -342,7 +342,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-132034
+  m_Name: pb_Mesh-51174
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -506,7 +506,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-132022
+  m_Name: pb_Mesh-51162
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -718,7 +718,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-131988
+  m_Name: pb_Mesh-51128
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -919,6 +919,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 85
       objectReference: {fileID: 0}
+    - target: {fileID: 4786364277931590181, guid: 722754f9bbe58a9488d388d7cd91bf1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5080288476966080928, guid: 722754f9bbe58a9488d388d7cd91bf1e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1019,7 +1023,8 @@ MonoBehaviour:
   surface: {fileID: 2003184450}
   enemy: {fileID: 7069632183988816024, guid: 5858fcdc5cd23f24592d81a339c5eefc, type: 3}
   player: {fileID: 4471309255964242044, guid: 3a590d14ea5339d32a8788c67000e567, type: 3}
-  height: -3.7
+  psx: {fileID: 2060823849731570275, guid: d290dcb85d949daad9414cd51d4c1c44, type: 3}
+  height: 0
 --- !u!4 &2003184449
 Transform:
   m_ObjectHideFlags: 0
