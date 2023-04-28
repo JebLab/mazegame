@@ -418,10 +418,8 @@ public class GridGen : MonoBehaviour
         break;
     }
 
-
-
     Instantiate(player, startPoint.floor.transform);
-    Instantiate(psx, new Vector3(0, 50, 0), Quaternion.identity);
+
     // runs right and left wall follower algorithims, then deletes random walls on the correct path to create loops
     deBottleneck();
 
