@@ -123,5 +123,5 @@ namespace Q3Movement
 
             return q;
         }
-    }
+   }
 }
