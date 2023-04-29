@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.031393245, g: 0.04017347, b: 0.05164714, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1022,7 +1022,7 @@ MonoBehaviour:
   gridTile: {fileID: 3488270309550772393, guid: 722754f9bbe58a9488d388d7cd91bf1e, type: 3}
   surface: {fileID: 2003184450}
   enemy: {fileID: 7069632183988816024, guid: 5858fcdc5cd23f24592d81a339c5eefc, type: 3}
-  player: {fileID: 4471309255964242044, guid: 3a590d14ea5339d32a8788c67000e567, type: 3}
+  player: {fileID: 340367311750259681, guid: 3a590d14ea5339d32a8788c67000e567, type: 3}
   psx: {fileID: 2060823849731570275, guid: d290dcb85d949daad9414cd51d4c1c44, type: 3}
   height: 0
 --- !u!4 &2003184449
