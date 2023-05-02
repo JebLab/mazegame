@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Friction: 6
   m_Gravity: 20
   m_GroundSettings:
-    MaxSpeed: 7
+    MaxSpeed: 5
     Acceleration: 14
     Deceleration: 10
   m_StrafeSettings:
