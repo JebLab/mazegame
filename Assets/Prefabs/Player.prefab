@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6372470209936811875}
   - component: {fileID: 756578223760620362}
   - component: {fileID: 8410646029207821835}
-  - component: {fileID: 8308853039698631321}
-  - component: {fileID: 8273539412378654485}
-  - component: {fileID: 3027249583969769790}
+  - component: {fileID: 7942570734743563123}
+  - component: {fileID: 4268705921765986772}
+  - component: {fileID: 8511025753986013015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: cb64b7118e4b1bb94be0e2c48b5da4ad, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: c3cce1c23151331f686df8c89fd25896, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7672598339995639869}
---- !u!114 &8308853039698631321
+--- !u!114 &7942570734743563123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,28 +147,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 340367311750259681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e05140fd7425fede97c6c0959634f95, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e7c5ff7c81dcf2a58bbca6c958b5251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDoc: {fileID: 7595054138061231861}
+--- !u!114 &4268705921765986772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340367311750259681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce78e34c65e5a00818da9d3231e360b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Friction: 6
   m_Gravity: 20
-  m_JumpForce: 4
-  m_AutoBunnyHop: 0
-  m_AirControl: 0
   m_GroundSettings:
-    MaxSpeed: 5
+    MaxSpeed: 7
     Acceleration: 14
     Deceleration: 10
-  m_AirSettings:
-    MaxSpeed: 0
-    Acceleration: 2
-    Deceleration: 2
   m_StrafeSettings:
     MaxSpeed: 1
     Acceleration: 50
     Deceleration: 50
+  m_SprintSpeed: 7
+  m_CrouchSpeed: 3
   m_Tran: {fileID: 7595054139127404304}
---- !u!114 &8273539412378654485
+--- !u!114 &8511025753986013015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,25 +185,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 340367311750259681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdd1419b25a18a1199ba485554c6596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiDoc: {fileID: 7595054138061231861}
---- !u!114 &3027249583969769790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340367311750259681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 973a666f368e9d1e8b5445ceb804ff33, type: 3}
+  m_Script: {fileID: 11500000, guid: 18d45e609550efd2c9aa461484100535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 7672598339995639869}
-  m_XSensitivity: 0.5
-  m_YSensitivity: 0.5
+  m_XSensitivity: 2
+  m_YSensitivity: 2
   m_ClampVerticalRotation: 1
   m_MinimumX: -90
   m_MaximumX: 90
@@ -423,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7595054138061231863}
   - component: {fileID: 7595054138061231862}
-  - component: {fileID: 7595054138061231856}
+  - component: {fileID: 2634441440718878396}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -462,7 +457,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 4b8e71254be066ab199c1c8fdabfae2c, type: 3}
   m_SortingOrder: 0
---- !u!114 &7595054138061231856
+--- !u!114 &2634441440718878396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -471,6 +466,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7595054138061231861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8edf37050b6c9d7a915a2ceacea1a54, type: 3}
+  m_Script: {fileID: 11500000, guid: be38f7a1c8c31a1b2b3753a525b7fe4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

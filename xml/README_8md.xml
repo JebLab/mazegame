@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="README_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>(ABG)<sp/>Lost<sp/>in<sp/>the<sp/>Backrooms<sp/>/<sp/>Mazegame</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Status</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>Design<sp/>Phase</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Programmers</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Jalen<sp/>J.<sp/>Dear<sp/>|<sp/>Player<sp/>Interaction<sp/>and<sp/>Modeling</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Joshua<sp/>Smith<sp/>|<sp/>AI<sp/>and<sp/>Enviroments</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Alex<sp/>Burrell<sp/>|<sp/>Story<sp/>and<sp/>UI</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Asset<sp/>Production<sp/>/<sp/>Additional<sp/>Help</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Tatianna<sp/>Dismuke<sp/>|<sp/>Sound<sp/>Design</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Marcos<sp/>&quot;Mars&quot;<sp/>Garcia<sp/>|<sp/>Additional<sp/>Graphics</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Introduction</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Synopsis</highlight></codeline>
+<codeline><highlight class="normal">OLD:</highlight></codeline>
+<codeline><highlight class="normal">A<sp/>new<sp/>student<sp/>from<sp/>Willams<sp/>County<sp/>Highschool<sp/>is<sp/>taken<sp/>to<sp/>the<sp/>abandoned<sp/>Hillman<sp/>Industrail<sp/>College<sp/>and<sp/>locked<sp/>in<sp/>by<sp/>bullies.<sp/>&quot;HiC&quot;<sp/>was<sp/>shuddered<sp/>in<sp/>the<sp/>1910s<sp/>for<sp/>reasons<sp/>unknown<sp/>but<sp/>is<sp/>assumed<sp/>to<sp/>have<sp/>closed<sp/>from<sp/>the<sp/>Flu<sp/>Pandemic<sp/>of<sp/>1918.<sp/>Upon<sp/>entering<sp/>the<sp/>school<sp/>and<sp/>exploring<sp/>for<sp/>abit<sp/>the<sp/>player<sp/>suddenly<sp/>transported<sp/>to<sp/>a<sp/>twisted<sp/>version<sp/>of<sp/>their<sp/>highschool.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NEW:<sp/></highlight></codeline>
+<codeline><highlight class="normal">&quot;Lost<sp/>in<sp/>the<sp/>Backrooms&quot;<sp/>is<sp/>a<sp/>survival<sp/>horror<sp/>game<sp/>where<sp/>the<sp/>player<sp/>takes<sp/>on<sp/>the<sp/>role<sp/>of<sp/>a<sp/>person<sp/>who<sp/>has<sp/>inexplicably<sp/>fallen<sp/>into<sp/>a<sp/>seemingly<sp/>endless<sp/>labyrinthine<sp/>network<sp/>of<sp/>yellow,<sp/>musty<sp/>rooms<sp/>and<sp/>hallways,<sp/>known<sp/>as<sp/>The<sp/>Backrooms.<sp/>The<sp/>objective<sp/>of<sp/>the<sp/>game<sp/>is<sp/>to<sp/>navigate<sp/>through<sp/>the<sp/>maze,<sp/>find<sp/>a<sp/>way<sp/>out,<sp/>and<sp/>avoid<sp/>the<sp/>hostile<sp/>entities<sp/>that<sp/>reside<sp/>within<sp/>The<sp/>Backrooms.<sp/>The<sp/>game&apos;s<sp/>atmosphere<sp/>is<sp/>tense<sp/>and<sp/>unsettling,<sp/>with<sp/>eerie<sp/>sounds<sp/>and<sp/>dim<sp/>lighting<sp/>adding<sp/>to<sp/>the<sp/>feeling<sp/>of<sp/>claustrophobia<sp/>and<sp/>dread.<sp/>As<sp/>the<sp/>player<sp/>progresses,<sp/>they<sp/>will<sp/>encounter<sp/>various<sp/>obstacles<sp/>and<sp/>puzzles,<sp/>as<sp/>well<sp/>as<sp/>gain<sp/>access<sp/>to<sp/>new<sp/>areas<sp/>and<sp/>tools<sp/>to<sp/>aid<sp/>in<sp/>their<sp/>escape.<sp/>However,<sp/>the<sp/>deeper<sp/>the<sp/>player<sp/>ventures<sp/>into<sp/>The<sp/>Backrooms,<sp/>the<sp/>more<sp/>dangerous<sp/>and<sp/>unpredictable<sp/>it<sp/>becomes,<sp/>with<sp/>new<sp/>and<sp/>terrifying<sp/>creatures<sp/>lurking<sp/>around<sp/>every<sp/>corner.<sp/>The<sp/>player&apos;s<sp/>only<sp/>hope<sp/>is<sp/>to<sp/>keep<sp/>moving<sp/>forward<sp/>and<sp/>never<sp/>look<sp/>back,<sp/>lest<sp/>they<sp/>become<sp/>lost<sp/>in<sp/>the<sp/>endless<sp/>expanse<sp/>of<sp/>The<sp/>Backrooms<sp/>forever.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Objectives</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Procedurally<sp/>Generated<sp/>Map<sp/>using<sp/>pre-fabricated<sp/>rooms</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Illusion<sp/>of<sp/>infinite<sp/>labyrinth<sp/>using<sp/>&quot;gates&quot;<sp/>or<sp/>other<sp/>tricks</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[X]<sp/>Add<sp/>UI<sp/>Elements</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[X]<sp/>Add<sp/>Player<sp/>UI<sp/>Interactions</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Textures<sp/>and<sp/>Polishing</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Mouse<sp/>Lock</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Interactable<sp/>Enviroments</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>PS1/Half-life<sp/>Era<sp/>Models<sp/>and<sp/>Textures</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Multiple<sp/>Levels<sp/>with<sp/>increasingly<sp/>added<sp/>stakes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Various<sp/>Monsters<sp/>with<sp/>different<sp/>Machanics</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Targets</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Release<sp/>a<sp/>Pre-Alpha<sp/>build<sp/>before<sp/>Spring<sp/>Break</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>
